@@ -43,8 +43,8 @@ definePage({
 <style lang="scss" scoped>
 .page {
   .bg {
-    background: linear-gradient(180deg, #4EA2CC -6.82%, rgba(52, 145, 162, 0.07) 62.41%);
     position: absolute;
+    width:100%
   }
 
 }
