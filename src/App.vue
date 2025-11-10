@@ -7,6 +7,10 @@ onLaunch(() => {})
   min-height: calc(100vh - var(--window-top));
   box-sizing: border-box;
   background: #f9f9f9;
+  color: #363636;
+  font-size: 28rpx;
+  line-height: 40rpx;
+
 }
 
 .wot-theme-dark.page-wraper {

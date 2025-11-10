@@ -6,7 +6,7 @@
       "name": "home",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "阿如然1",
+        "navigationBarTitleText": "阿如然",
         "navigationStyle": "custom"
       }
     },

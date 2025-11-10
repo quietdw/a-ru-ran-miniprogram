@@ -12,6 +12,7 @@ declare module 'vue' {
     GlobalMessage: typeof import('./components/GlobalMessage.vue')['default']
     GlobalToast: typeof import('./components/GlobalToast.vue')['default']
     PrivacyPopup: typeof import('./components/PrivacyPopup.vue')['default']
+    Template: typeof import('./components/template.vue')['default']
     WdConfigProvider: typeof import('wot-design-uni/components/wd-config-provider/wd-config-provider.vue')['default']
     WdMessageBox: typeof import('wot-design-uni/components/wd-message-box/wd-message-box.vue')['default']
     WdNavbar: typeof import('wot-design-uni/components/wd-navbar/wd-navbar.vue')['default']
