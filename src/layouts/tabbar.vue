@@ -36,11 +36,17 @@ export default {
   <slot />
   <wd-tabbar
     :model-value="activeTabbar.name" bordered safe-area-inset-bottom placeholder fixed
+    active-color="#2D62B8"
+    inactive-color="#8196B7"
     @change="handleTabbarChange"
   >
     <wd-tabbar-item
       v-for="(item, index) in tabbarList" :key="index" :name="item.name"
       :value="getTabbarItemValue(item.name)" :title="item.title" :icon="item.icon"
-    />
+    >
+      <template #icon>
+        <wd-img round height="40rpx" width="40rpx" :src="activeTabbar.name === item.name ? item.activeIcon : item.icon" />
+      </template>
+    </wd-tabbar-item>
   </wd-tabbar>
 </template>

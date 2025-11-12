@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import arrCard from './components/arr-card.vue'
-import bg1 from '@/static/img/pd1.svg'
+import bg2 from '@/static/img/bg2.svg'
 
 definePage({
   name: 'home',
@@ -71,7 +71,7 @@ definePage({
       <arr-card
         custom-class="mt-40rpx" :bottom-left="{
           class: '!w-full !h-117rpx !left-0 !bottom-0',
-          src: bg1,
+          src: bg2,
         }"
       >
         <template #left>
