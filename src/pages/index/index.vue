@@ -21,7 +21,7 @@ definePage({
         mode="widthFix"
       />
     </view>
-    <view class="relative px-28rpx">
+    <view class="relative px-28rpx pb-28rpx">
       <wd-navbar safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false">
         <template #capsule>
           <view class="home-title relative flex">
@@ -38,6 +38,7 @@ definePage({
           </view>
         </template>
       </wd-navbar>
+      <view class="pt-32rpx" />
       <arr-card>
         <view class="mb-16rpx font-bold">
           蒙医文化
@@ -87,6 +88,56 @@ definePage({
           </view>
         </view>
       </arr-card>
+
+      <view class="mt-48rpx flex">
+        <view class="mr-16rpx h-200rpx w-332rpx shrink-0 overflow-hidden rounded-32rpx">
+          <image class="h-full w-full" src="@/static/img/pd1.svg" />
+        </view>
+        <view>
+          <view class="mb-10rpx text-24rpx leading-34rpx">
+            鹿血丸蒙医特制配方制作
+          </view>
+          <view class="text-20rpx leading-28rpx">
+            鹿血丸属于传统中药制剂，主要功效是补气养血、温补肾阳、强健筋骨，常用于改善气血亏虚、肾阳不足以及身体虚弱引起的一系列症状。它由鹿血等药材组成，需在中医辨证指导下使用。
+          </view>
+        </view>
+      </view>
+      <view>
+        <view class="mt-24rpx font-bold">
+          主要功效
+        </view>
+        <view class="mt-16rpx text-24rpx font-bold leading-34rpx">
+          补气益血
+        </view>
+        <view class="mt-16rpx text-24rpx leading-34rpx">
+          方中含有人参、黄芪等补气药材，以及当归、地黄、白芍等养血药材，共同改善气血两虚、乏力、心悸、面色苍白或萎黄等症状。
+        </view>
+      </view>
+
+      <view class="mt-48rpx flex">
+        <view class="mr-16rpx h-200rpx w-332rpx shrink-0 overflow-hidden rounded-32rpx">
+          <image class="h-full w-full" src="@/static/img/pd2.svg" />
+        </view>
+        <view>
+          <view class="mb-10rpx text-24rpx leading-34rpx">
+            鹿血丸蒙医特制配方制作
+          </view>
+          <view class="text-20rpx leading-28rpx">
+            鹿血丸属于传统中药制剂，主要功效是补气养血、温补肾阳、强健筋骨，常用于改善气血亏虚、肾阳不足以及身体虚弱引起的一系列症状。它由鹿血等药材组成，需在中医辨证指导下使用。
+          </view>
+        </view>
+      </view>
+      <view>
+        <view class="mt-24rpx font-bold">
+          主要功效
+        </view>
+        <view class="mt-16rpx text-24rpx font-bold leading-34rpx">
+          补气益血
+        </view>
+        <view class="mt-16rpx text-24rpx leading-34rpx">
+          方中含有人参、黄芪等补气药材，以及当归、地黄、白芍等养血药材，共同改善气血两虚、乏力、心悸、面色苍白或萎黄等症状。
+        </view>
+      </view>
     </view>
   </view>
 </template>
