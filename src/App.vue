@@ -21,5 +21,15 @@ onLaunch(() => {})
   --wot-cell-arrow-color:#1328A4CC;
   --wot-size-side-padding:0;
   background-color: transparent !important;
+
+  .wd-cell__label {
+    line-height: 34rpx;
+    margin-top: 0;
+    color:#1f1f1f
+  }
+}
+
+button[plain] {
+  border: 0
 }
 </style>
