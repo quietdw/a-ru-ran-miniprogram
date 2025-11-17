@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CommonArrCard: typeof import('./components/common/arr-card.vue')['default']
     CommonPageBg: typeof import('./components/common/page-bg.vue')['default']
     DemoBlock: typeof import('./components/DemoBlock.vue')['default']
     GlobalLoading: typeof import('./components/GlobalLoading.vue')['default']

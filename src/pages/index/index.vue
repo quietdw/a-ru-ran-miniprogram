@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import arrCard from './components/arr-card.vue'
+import arrCard from '@/components/common/arr-card.vue'
 import bg2 from '@/static/img/bg2.svg'
 import PageBg from '@/components/common/page-bg.vue'
 
