@@ -16,4 +16,10 @@ onLaunch(() => {})
 .wot-theme-dark.page-wraper {
   background: #222;
 }
+
+.custom-link.wd-cell {
+  --wot-cell-arrow-color:#1328A4CC;
+  --wot-size-side-padding:0;
+  background-color: transparent !important;
+}
 </style>

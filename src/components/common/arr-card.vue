@@ -17,12 +17,16 @@ defineProps({
   bottomLeft: {
     type: Object,
   },
+  showCornerPic: {
+    type: Boolean,
+    default: true,
+  },
 })
 </script>
 
 <template>
   <view class="arr-card" :class="customClass">
-    <view class="bottom-left-img" :class="bottomLeft?.class">
+    <view v-if="showCornerPic" class="bottom-left-img" :class="bottomLeft?.class">
       <image v-if="bottomLeft?.src" mode="aspectFill" class="h-full w-full" :src="bottomLeft.src" />
       <image v-else class="h-full w-full" src="@/static/img/cloud2.svg" />
     </view>
@@ -35,7 +39,7 @@ defineProps({
         <slot />
       </view>
     </view>
-    <view class="top-right-img">
+    <view v-if="showCornerPic" class="top-right-img">
       <image class="h-full w-full" src="@/static/img/cloud2.svg" />
     </view>
   </view>
