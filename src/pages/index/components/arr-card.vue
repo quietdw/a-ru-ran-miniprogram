@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // 最外层page不能有
 export default {
   options: {
@@ -9,7 +9,7 @@ export default {
 }
 </script>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
   customClass: {
     type: String,

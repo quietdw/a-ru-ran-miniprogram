@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    CommonPageBg: typeof import('./components/common/page-bg.vue')['default']
     DemoBlock: typeof import('./components/DemoBlock.vue')['default']
     GlobalLoading: typeof import('./components/GlobalLoading.vue')['default']
     GlobalMessage: typeof import('./components/GlobalMessage.vue')['default']

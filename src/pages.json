@@ -25,7 +25,8 @@
       "name": "consult",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "咨询"
+        "navigationBarTitleText": "咨询",
+        "navigationStyle": "custom"
       }
     },
     {

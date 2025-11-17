@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // 最外层page不能有
 export default {
   options: {

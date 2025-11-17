@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import arrCard from './components/arr-card.vue'
 import bg2 from '@/static/img/bg2.svg'
+import PageBg from '@/components/common/page-bg.vue'
 
 definePage({
   name: 'home',
@@ -14,13 +15,7 @@ definePage({
 
 <template>
   <view class="page relative">
-    <view class="bg">
-      <image
-        class="w-full"
-        src="/static/img/bg.svg"
-        mode="widthFix"
-      />
-    </view>
+    <PageBg />
     <view class="relative px-28rpx pb-28rpx">
       <wd-navbar safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false">
         <template #capsule>
@@ -144,10 +139,6 @@ definePage({
 
 <style lang="scss" scoped>
 .page {
-  .bg {
-    position: absolute;
-    width:100%
-  }
 
 }
 </style>
