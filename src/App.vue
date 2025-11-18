@@ -32,4 +32,18 @@ onLaunch(() => {})
 button[plain] {
   border: 0
 }
+
+.t-xs {
+  font-size:20rpx;
+  line-height: 28rpx;
+}
+
+.t-s {
+  font-size:24rpx;
+  line-height: 34rpx;
+}
+.t-n {
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
 </style>

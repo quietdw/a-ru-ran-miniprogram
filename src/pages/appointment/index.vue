@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import DateSelect from './components/date-select.vue'
 import PageBg from '@/components/common/page-bg.vue'
 
 definePage({
@@ -33,7 +34,7 @@ definePage({
       </wd-navbar>
       <view class="pt-32rpx" />
       <view>
-        234
+        <DateSelect />
       </view>
     </view>
   </view>
