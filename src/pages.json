@@ -16,7 +16,8 @@
       "name": "appointment",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "预约"
+        "navigationBarTitleText": "预约",
+        "navigationStyle": "custom"
       }
     },
     {

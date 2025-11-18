@@ -11,6 +11,10 @@ export default {
 <script setup lang="ts">
 defineProps({
   customClass: String,
+  gradientStart: {
+    type: String,
+    default: 'rgba(78, 162, 204, 0.2)',
+  },
 })
 </script>
 
@@ -37,7 +41,7 @@ defineProps({
       top: 0;
       left:0;
 
-      background: linear-gradient(180deg, rgba(78, 162, 204, 0.2) 0%, rgba(255, 255, 255, 1) 100%);
+      background: linear-gradient(180deg, v-bind(gradientStart) 0%, rgba(255, 255, 255, 1) 100%);
     }
 
   }

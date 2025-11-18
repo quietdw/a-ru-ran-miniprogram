@@ -27,7 +27,7 @@ definePage({
                 mode="scaleToFill"
               />
             </view>
-            <view class="relative pl-72rpx text-32rpx text-white font-bold leading-[70rpx]">
+            <view class="relative pl-72rpx text-32rpx text-white font-bold leading-67rpx">
               关于阿如然
             </view>
           </view>
