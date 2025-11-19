@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DateSelect from './components/date-select.vue'
 import PageBg from '@/components/common/page-bg.vue'
+import ArrCard2 from '@/components/common/arr-card2.vue'
 
 definePage({
   name: 'appointment',
@@ -34,7 +35,13 @@ definePage({
       </wd-navbar>
       <view class="pt-32rpx" />
       <view>
-        <DateSelect />
+        <ArrCard2 title="预约药浴">
+          <DateSelect />
+        </ArrCard2>
+        <view class="h-40rpx" />
+        <ArrCard2 title="私人聚餐">
+          <DateSelect />
+        </ArrCard2>
       </view>
     </view>
   </view>

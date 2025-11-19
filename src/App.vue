@@ -33,6 +33,11 @@ button[plain] {
   border: 0
 }
 
+.t-xxs {
+  font-size:16rpx;
+  line-height: 22rpx;
+}
+
 .t-xs {
   font-size:20rpx;
   line-height: 28rpx;
