@@ -12,8 +12,10 @@ defineProps({
 const list = computed(() => {
   return Array.from({ length: 20 }, (_, index) => {
     return {
-      name: `商品${index + 1}`,
+      name: `内蒙特产鲜牛肉，新鲜草原牛肉`,
       value: index + 1,
+      price: 100.12,
+      originalPrice: 120.56,
     }
   })
 })
