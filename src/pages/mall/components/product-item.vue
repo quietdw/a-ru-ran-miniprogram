@@ -81,25 +81,22 @@ export default {
             </view>
           </view>
           <!-- 价格 -->
-          <view class="price mt-16rpx min-w-0 flex flex-1 items-center gap-8rpx">
-            <view class="price-num">
-              <text class="t-xs text-#FF4444">
+          <view class="price mt-16rpx min-w-0 flex flex-1 gap-8rpx">
+            <view class="price-num flex items-end">
+              <view class="t-xs text-#FF4444">
                 ¥
-              </text>
-              <text class="t-l text-#FF4444 font-bold">
+              </view>
+              <view class="t-l text-#FF4444 font-bold">
                 {{ priceArray[0] }}
-              </text>
+              </view>
               <text v-if="priceArray[1]" class="t-xs text-#FF4444 font-bold">
                 .{{ priceArray[1] }}
               </text>
             </view>
-            <view class="original-price flex gap-8rpx">
-              <text class="t-xs text-#999999">
-                ¥
-              </text>
-              <text class="t-xs text-#999">
-                {{ item.originalPrice }}
-              </text>
+            <view class="original-price flex items-end gap-8rpx">
+              <view class="t-xs text-#999">
+                ¥ {{ item.originalPrice }}
+              </view>
             </view>
           </view>
         </view>
