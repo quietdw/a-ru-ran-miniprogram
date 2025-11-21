@@ -2,6 +2,8 @@
 import DateSelect from './components/date-select.vue'
 import PageBg from '@/components/common/page-bg.vue'
 import ArrCard2 from '@/components/common/arr-card2.vue'
+import { getFileUrl } from '@/utils/file'
+
 
 definePage({
   name: 'appointment',
@@ -23,7 +25,7 @@ definePage({
             <view class="absolute left-0rpx top-0 z-0 h-88rpx w-326rpx">
               <image
                 class="h-full w-full"
-                src="/static/img/cloud4.svg"
+                :src="getFileUrl('/img/cloud4.svg')"
                 mode="scaleToFill"
               />
             </view>

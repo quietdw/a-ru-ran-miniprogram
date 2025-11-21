@@ -1,4 +1,6 @@
 <script lang="ts">
+import { getFileUrl } from '@/utils/file'
+
 // 最外层page不能有
 export default {
   options: {
@@ -22,7 +24,7 @@ defineProps({
   <view class="bg" :class="customClass">
     <image
       class="w-full"
-      src="/static/img/bg.svg"
+      :src="getFileUrl('/img/bg.svg')"
       mode="widthFix"
     />
     <view class="gradient" />

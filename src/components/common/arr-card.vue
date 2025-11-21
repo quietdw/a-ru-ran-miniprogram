@@ -1,4 +1,6 @@
 <script lang="ts">
+import { getFileUrl } from '@/utils/file'
+
 // 最外层page不能有
 export default {
   options: {
@@ -28,19 +30,19 @@ defineProps({
   <view class="arr-card" :class="customClass">
     <view v-if="showCornerPic" class="bottom-left-img" :class="bottomLeft?.class">
       <image v-if="bottomLeft?.src" mode="aspectFill" class="h-full w-full" :src="bottomLeft.src" />
-      <image v-else class="h-full w-full" src="@/static/img/cloud2.svg" />
+      <image v-else class="h-full w-full" :src="getFileUrl('/img/cloud2.svg')" />
     </view>
     <slot name="left" />
     <view class="content">
       <view class="content-img">
-        <image class="h-full w-full" src="@/static/img/cloud3.svg" />
+        <image class="h-full w-full" :src="getFileUrl('/img/cloud3.svg')" />
       </view>
       <view>
         <slot />
       </view>
     </view>
     <view v-if="showCornerPic" class="top-right-img">
-      <image class="h-full w-full" src="@/static/img/cloud2.svg" />
+      <image class="h-full w-full" :src="getFileUrl('/img/cloud2.svg')" />
     </view>
   </view>
 </template>

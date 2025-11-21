@@ -36,7 +36,8 @@
       "name": "mall",
       "layout": "tabbar",
       "style": {
-        "navigationBarTitleText": "商城"
+        "navigationBarTitleText": "商城",
+        "navigationStyle": "custom"
       }
     },
     {

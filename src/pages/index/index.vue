@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import arrCard from '@/components/common/arr-card.vue'
-import bg2 from '@/static/img/bg2.svg'
 import PageBg from '@/components/common/page-bg.vue'
+import { getFileUrl } from '@/utils/file'
 
 definePage({
   name: 'home',
@@ -23,7 +23,7 @@ definePage({
             <view class="absolute left-0 top-0 z-0 h-69rpx w-300rpx">
               <image
                 class="h-full w-full"
-                src="/static/img/cloud.svg"
+                :src="getFileUrl('/img/cloud.svg')"
                 mode="scaleToFill"
               />
             </view>
@@ -67,11 +67,11 @@ definePage({
       <arr-card
         custom-class="mt-40rpx" :bottom-left="{
           class: '!w-full !h-117rpx !left-0 !bottom-0',
-          src: bg2,
+          src: getFileUrl('/img/bg2.svg'),
         }"
       >
         <template #left>
-          <image class="ml-2rpx mr-8rpx h-376rpx w-224rpx translate-y--52rpx" src="@/static/img/p1.svg" />
+          <image class="ml-2rpx mr-8rpx h-376rpx w-224rpx translate-y--52rpx" :src="getFileUrl('/img/p1.svg')" />
         </template>
 
         <view class="pb-42rpx text-20rpx leading-28rpx">
@@ -86,7 +86,7 @@ definePage({
 
       <view class="mt-48rpx flex">
         <view class="mr-16rpx h-200rpx w-332rpx shrink-0 overflow-hidden rounded-32rpx">
-          <image class="h-full w-full" src="@/static/img/pd1.svg" />
+          <image class="h-full w-full" :src="getFileUrl('/img/pd1.svg')" />
         </view>
         <view>
           <view class="mb-10rpx text-24rpx leading-34rpx">
@@ -111,7 +111,7 @@ definePage({
 
       <view class="mt-48rpx flex">
         <view class="mr-16rpx h-200rpx w-332rpx shrink-0 overflow-hidden rounded-32rpx">
-          <image class="h-full w-full" src="@/static/img/pd2.svg" />
+          <image class="h-full w-full" :src="getFileUrl('/img/pd2.svg')" />
         </view>
         <view>
           <view class="mb-10rpx text-24rpx leading-34rpx">

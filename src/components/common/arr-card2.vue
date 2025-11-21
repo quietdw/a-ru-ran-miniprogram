@@ -1,4 +1,6 @@
 <script lang="ts">
+import { getFileUrl } from '@/utils/file'
+
 // 最外层page不能有
 export default {
   options: {
@@ -26,7 +28,7 @@ defineProps({
   <view class="arr-card2" :class="customClass">
     <view class="bg1 absolute left-0 top-0" />
     <view class="bg2 absolute bottom-0 right-0 h-full w-full flex items-center justify-center opacity-30">
-      <image class="h-400rpx w-400rpx" src="@/static/img/cloud3.svg" />
+      <image class="h-400rpx w-400rpx" :src="getFileUrl('/img/cloud3.svg')" />
     </view>
     <view class="content relative z-1 h-full w-full flex flex-col">
       <view v-if="title" class="title t-n mb-20rpx flex items-center justify-center text-#333 font-bold">

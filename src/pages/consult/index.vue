@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import PageBg from '@/components/common/page-bg.vue'
 import arrCard from '@/components/common/arr-card.vue'
-
+import { getFileUrl } from '@/utils/file'
 definePage({
   name: 'consult',
   layout: 'tabbar',
@@ -32,7 +32,7 @@ definePage({
 
       <button open-type="contact" hover-class="none" plain class="mt-72rpx !h-auto !bg-transparent">
         <view class="flex items-center">
-          <image src="@/static/img/img.svg" class="mr-28rpx h-80rpx w-80rpx shrink-0" />
+          <image :src="getFileUrl('/img/img.svg')" class="mr-28rpx h-80rpx w-80rpx shrink-0" />
           <wd-cell title="图文资讯" custom-class="custom-link" is-link label="如果有问题可点我咨询" />
         </view>
       </button>

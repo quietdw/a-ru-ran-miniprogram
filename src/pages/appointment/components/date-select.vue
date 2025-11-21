@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { getWeekLabel } from 'wot-design-uni/components/wd-calendar-view/utils'
 import { formatDate } from '@/utils/date'
-
+import { getFileUrl } from '@/utils/file'
 const selectedDate = ref('')
 const selectedTime = ref('')
 const selectedRoom = ref('')
@@ -145,7 +145,7 @@ export default {
       <view v-for="item in roomList" :key="item.value">
         <view class="t-xs mb-4rpx text-#666" @tap="!item.checked && handleRoomSelect(item.value)">
           <view v-if="item.value === selectedRoom" class="flex flex-col items-center gap-8rpx">
-            <image src="@/static/img/check-success.svg" mode="aspectFill" class="h-60rpx w-60rpx" />
+            <image :src="getFileUrl('/img/check-success.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
             <view class="t-xs">
               预约
             </view>
@@ -154,7 +154,7 @@ export default {
             </view>
           </view>
           <view v-else-if="item.checked" class="flex flex-col items-center gap-8rpx">
-            <image src="@/static/img/check-warning.svg" mode="aspectFill" class="h-60rpx w-60rpx" />
+            <image :src="getFileUrl('/img/check-warning.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
             <view class="t-xs">
               已预约
             </view>
@@ -163,7 +163,7 @@ export default {
             </view>
           </view>
           <view v-else class="flex flex-col items-center gap-8rpx">
-            <image src="@/static/img/check-normal.svg" mode="aspectFill" class="h-60rpx w-60rpx" />
+            <image :src="getFileUrl('/img/check-normal.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
             <view class="t-xs">
               空闲
             </view>
