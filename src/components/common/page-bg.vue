@@ -31,7 +31,7 @@ defineProps({
 
 <style lang="scss" scoped>
  .bg {
-    position: absolute;
+    position: fixed;
     width:100%;
 
     .gradient {
