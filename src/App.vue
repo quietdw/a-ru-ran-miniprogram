@@ -33,6 +33,15 @@ button[plain] {
   border: 0
 }
 
+.arr-card {
+  padding: 32rpx 16rpx;
+  box-shadow: 0px 1px 5px 0px #0000001A;
+  border-radius: 16rpx;
+  position: relative;
+  min-height:100rpx;
+  box-sizing: border-box;
+}
+
 .t-xxs {
   font-size:16rpx;
   line-height: 22rpx;

@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineProps({
+  item: {
+    type: Object,
+    default: () => ({}),
+  },
+})
+</script>
 
 <script lang="ts">
 // 最外层page不能有
@@ -11,7 +18,9 @@ export default {
 </script>
 
 <template>
-  <view class="2222" />
+  <view class="product-item arr-card">
+    2234
+  </view>
 </template>
 
 <style lang="scss" scoped></style>

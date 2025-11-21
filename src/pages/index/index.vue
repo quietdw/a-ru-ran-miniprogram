@@ -17,7 +17,7 @@ definePage({
   <view class="page relative">
     <PageBg />
     <view class="relative px-28rpx pb-28rpx">
-      <wd-navbar safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false">
+      <wd-navbar safe-area-inset-top fixed custom-style="background-color: transparent !important;" :bordered="false">
         <template #capsule>
           <view class="home-title relative flex">
             <view class="absolute left-0 top-0 z-0 h-69rpx w-300rpx">
@@ -33,6 +33,8 @@ definePage({
           </view>
         </template>
       </wd-navbar>
+      <wd-navbar placeholder safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false" />
+
       <view class="pt-32rpx" />
       <arr-card>
         <view class="mb-16rpx font-bold">

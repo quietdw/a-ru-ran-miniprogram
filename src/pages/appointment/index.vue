@@ -4,7 +4,6 @@ import PageBg from '@/components/common/page-bg.vue'
 import ArrCard2 from '@/components/common/arr-card2.vue'
 import { getFileUrl } from '@/utils/file'
 
-
 definePage({
   name: 'appointment',
   layout: 'tabbar',
@@ -19,7 +18,7 @@ definePage({
   <view class="page">
     <PageBg custom-class="opacity-30" gradient-start="#cb4d4d38" />
     <view class="relative px-28rpx pb-28rpx">
-      <wd-navbar safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false">
+      <wd-navbar safe-area-inset-top fixed custom-style="background-color: transparent !important;" :bordered="false">
         <template #capsule>
           <view class="home-title relative flex">
             <view class="absolute left-0rpx top-0 z-0 h-88rpx w-326rpx">
@@ -35,6 +34,8 @@ definePage({
           </view>
         </template>
       </wd-navbar>
+      <wd-navbar placeholder safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false" />
+
       <view class="pt-32rpx" />
       <view>
         <ArrCard2 title="预约药浴">

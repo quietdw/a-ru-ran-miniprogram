@@ -2,6 +2,7 @@
 import PageBg from '@/components/common/page-bg.vue'
 import arrCard from '@/components/common/arr-card.vue'
 import { getFileUrl } from '@/utils/file'
+
 definePage({
   name: 'consult',
   layout: 'tabbar',
@@ -17,7 +18,9 @@ definePage({
   <view class="relative">
     <PageBg custom-class="opacity-30" />
     <view class="relative px-28rpx pb-24rpx">
-      <wd-navbar title="咨询" safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false" />
+      <wd-navbar title="咨询" safe-area-inset-top fixed custom-style="background-color: transparent !important;" :bordered="false" />
+      <wd-navbar placeholder safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false" />
+
       <view class="mt-24rpx" />
       <arrCard :show-corner-pic="false">
         <view class="mb-16rpx font-bold">
