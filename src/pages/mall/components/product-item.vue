@@ -19,7 +19,7 @@ export default {
 
 <template>
   <view class="product-item arr-card">
-    2234
+    {{ item.name }}
   </view>
 </template>
 

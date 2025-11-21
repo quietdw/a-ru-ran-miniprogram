@@ -10,7 +10,7 @@ defineProps({
 })
 
 const list = computed(() => {
-  return Array.from({ length: 10 }, (_, index) => {
+  return Array.from({ length: 20 }, (_, index) => {
     return {
       name: `商品${index + 1}`,
       value: index + 1,
