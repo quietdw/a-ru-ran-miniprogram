@@ -1,5 +1,5 @@
-import type { SystemThemeState, ThemeMode } from '@/composables/types/theme'
 import { defineStore } from 'pinia'
+import type { SystemThemeState, ThemeMode } from '@/composables/types/theme'
 import { themeColorOptions } from '@/composables/types/theme'
 
 /**
@@ -35,22 +35,22 @@ export const useThemeStore = defineStore('theme', {
      * @returns 系统主题模式
      */
     getSystemTheme(): ThemeMode {
-      // #ifdef MP-WEIXIN
-      // 微信小程序使用 getAppBaseInfo
-      const appBaseInfo = uni.getAppBaseInfo()
-      if (appBaseInfo && appBaseInfo.theme) {
-        return appBaseInfo.theme as ThemeMode
-      }
-      // #endif
+      // // #ifdef MP-WEIXIN
+      // // 微信小程序使用 getAppBaseInfo
+      // const appBaseInfo = uni.getAppBaseInfo()
+      // if (appBaseInfo && appBaseInfo.theme) {
+      //   return appBaseInfo.theme as ThemeMode
+      // }
+      // // #endif
 
-      // #ifndef MP-WEIXIN
-      // 其他平台使用 getSystemInfoSync
-      const systemInfo = uni.getSystemInfoSync()
-      if (systemInfo && systemInfo.theme) {
-        return systemInfo.theme as ThemeMode
-      }
-      // #endif
-
+      // // #ifndef MP-WEIXIN
+      // // 其他平台使用 getSystemInfoSync
+      // const systemInfo = uni.getSystemInfoSync()
+      // if (systemInfo && systemInfo.theme) {
+      //   return systemInfo.theme as ThemeMode
+      // }
+      // // #endif
+      console.log(2234)
       return 'light' // 默认返回 light
     },
 

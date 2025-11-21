@@ -1,5 +1,5 @@
-import type { ThemeColorOption, ThemeMode, ThemeState } from '@/composables/types/theme'
 import { defineStore } from 'pinia'
+import type { ThemeColorOption, ThemeMode, ThemeState } from '@/composables/types/theme'
 import { themeColorOptions } from '@/composables/types/theme'
 
 /**
@@ -9,7 +9,7 @@ import { themeColorOptions } from '@/composables/types/theme'
 export const useManualThemeStore = defineStore('manualTheme', {
   state: (): ThemeState => ({
     theme: 'light',
-    followSystem: true, // 是否跟随系统主题
+    followSystem: false, // 是否跟随系统主题
     hasUserSet: false, // 用户是否手动设置过主题
     currentThemeColor: themeColorOptions[0],
     themeVars: {
@@ -79,26 +79,28 @@ export const useManualThemeStore = defineStore('manualTheme', {
      * @returns 系统主题模式
      */
     getSystemTheme(): ThemeMode {
-      try {
-        // #ifdef MP-WEIXIN
-        // 微信小程序使用 getAppBaseInfo
-        const appBaseInfo = uni.getAppBaseInfo()
-        if (appBaseInfo && appBaseInfo.theme) {
-          return appBaseInfo.theme as ThemeMode
-        }
-        // #endif
+      // try {
+      //   // #ifdef MP-WEIXIN
+      //   // 微信小程序使用 getAppBaseInfo
+      //   const appBaseInfo = uni.getAppBaseInfo()
+      //   if (appBaseInfo && appBaseInfo.theme) {
+      //     return appBaseInfo.theme as ThemeMode
+      //   }
+      //   // #endif
 
-        // #ifndef MP-WEIXIN
-        // 其他平台使用 getSystemInfoSync
-        const systemInfo = uni.getSystemInfoSync()
-        if (systemInfo && systemInfo.theme) {
-          return systemInfo.theme as ThemeMode
-        }
-        // #endif
-      }
-      catch (error) {
-        console.warn('获取系统主题失败:', error)
-      }
+      //   // #ifndef MP-WEIXIN
+      //   // 其他平台使用 getSystemInfoSync
+      //   const systemInfo = uni.getSystemInfoSync()
+      //   if (systemInfo && systemInfo.theme) {
+      //     return systemInfo.theme as ThemeMode
+      //   }
+      //   // #endif
+      // }
+      // catch (error) {
+      //   console.warn('获取系统主题失败:', error)
+      // }
+      console.log(3234)
+
       return 'light' // 默认返回 light
     },
 
