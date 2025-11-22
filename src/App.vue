@@ -7,7 +7,7 @@ onLaunch(() => {})
   min-height: calc(100vh - var(--window-top));
   box-sizing: border-box;
   background: #f9f9f9;
-  color: #363636;
+  color: #333;
   font-size: 28rpx;
   line-height: 40rpx;
 
@@ -63,5 +63,9 @@ button[plain] {
 .t-l {
   font-size: 32rpx;
   line-height: 44rpx;
+}
+.t-xl {
+  font-size: 36rpx;
+  line-height: 50rpx;
 }
 </style>

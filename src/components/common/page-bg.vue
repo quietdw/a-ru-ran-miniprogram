@@ -35,6 +35,7 @@ defineProps({
  .bg {
     position: fixed;
     width:100%;
+    pointer-events: none;
 
     .gradient {
       position: absolute;
