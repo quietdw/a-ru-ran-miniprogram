@@ -62,6 +62,6 @@ button[plain] {
 }
 .t-l {
   font-size: 32rpx;
-  line-height: 38rpx;
+  line-height: 44rpx;
 }
 </style>

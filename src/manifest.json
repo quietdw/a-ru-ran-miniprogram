@@ -50,7 +50,7 @@
     "optimization": {
       "subPackages": true
     },
-    "darkmode": true,
+    "darkmode": false,
     "themeLocation": "theme.json"
   },
   "mp-alipay": {
