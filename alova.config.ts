@@ -13,7 +13,7 @@ export default <Config>{
        * 1. openapi json file url
        * 2. local file
        */
-      input: 'https://petstore3.swagger.io/api/v3/openapi.json',
+      input: 'http://47.111.80.123:7888/swagger/doc.json',
       /**
        * input file platform. Currently only swagger is supported.
        * When this parameter is specified, the input field only needs to specify the document address without specifying the openapi file
@@ -57,7 +57,7 @@ export default <Config>{
        */
       handleApi: (apiDescriptor) => {
         // Skip logging to console
-        // console.log(apiDescriptor)
+        console.log(apiDescriptor)
 
         // Filter out any deprecated APIs if needed
         if (apiDescriptor.deprecated) {

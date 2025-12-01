@@ -7,6 +7,7 @@ type _LocationUrl =
   "/pages/index/index" |
   "/pages/appointment/index" |
   "/pages/consult/index" |
+  "/pages/login/index" |
   "/pages/mall/index" |
   "/pages/mine/index";
 

@@ -3,6 +3,15 @@ onLaunch(() => {})
 </script>
 
 <style lang="scss">
+:root,
+page{
+  --primary-color: #2D62B8;
+  --wot-color-theme: var(--primary-color);
+
+  --wot-button-primary-bg-color: var(--primary-color);
+  --wot-button-medium-radius: 16rpx;
+}
+
 .page-wraper {
   min-height: calc(100vh - var(--window-top));
   box-sizing: border-box;
