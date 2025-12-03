@@ -3660,7 +3660,7 @@ declare global {
        *
        * [POST] 小程序获取手机号
        *
-       * **path:** /api/wechat/getphone
+       * **path:** /api/wechatuser/getphone
        *
        * ---
        *
@@ -3687,7 +3687,7 @@ declare global {
        * }
        * ```
        */
-      post_api_wechat_getphone<
+      post_api_wechatuser_getphone<
         Config extends Alova2MethodConfig<
           Response_response & {
             msg?: string;
@@ -3701,7 +3701,7 @@ declare global {
         Response_response & {
           msg?: string;
         },
-        'general.post_api_wechat_getphone',
+        'general.post_api_wechatuser_getphone',
         Config
       >;
       /**
@@ -3709,7 +3709,7 @@ declare global {
        *
        * [POST] 小程序登入
        *
-       * **path:** /api/wechat/login
+       * **path:** /api/wechatuser/login
        *
        * ---
        *
@@ -3725,16 +3725,43 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = string
+       * type Response = object & {
+       *   code?: number
+       *   data?: {
+       *     token?: string
+       *     userinfo?: object
+       *   }
+       *   msg?: string
+       * }
        * ```
        */
-      post_api_wechat_login<
-        Config extends Alova2MethodConfig<string> & {
+      post_api_wechatuser_login<
+        Config extends Alova2MethodConfig<
+          object & {
+            code?: number;
+            data?: {
+              token?: string;
+              userinfo?: object;
+            };
+            msg?: string;
+          }
+        > & {
           data: Request_wechatminauthrequest;
         }
       >(
         config: Config
-      ): Alova2Method<string, 'general.post_api_wechat_login', Config>;
+      ): Alova2Method<
+        object & {
+          code?: number;
+          data?: {
+            token?: string;
+            userinfo?: object;
+          };
+          msg?: string;
+        },
+        'general.post_api_wechatuser_login',
+        Config
+      >;
     };
     SysApi: {
       /**

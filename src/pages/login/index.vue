@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Apis from '@/api'
+import { useUserInfoStore } from '@/store/userInfo'
+import { useGlobalToast } from '@/composables/useGlobalToast'
 
 definePage({
   name: 'login',
@@ -8,25 +10,25 @@ definePage({
   },
 })
 
-async function handleGetPhoneNumber(e: { code: string, encryptedData: string, iv: string }) {
-  if (e.code) {
-  // 小程序登录
-    const loginRes = await Apis.general.post_api_wechat_login({
-      data: {
-        code: e.code,
-      },
-    })
-    console.log(loginRes)
+const userInfoStore = useUserInfoStore()
+const globalToast = useGlobalToast()
+async function handleLogin() {
+  uni.login({
+    provider: 'weixin',
+    success: async (e: { code: string }) => {
+      const loginRes = await Apis.general.post_api_wechatuser_login({
+        data: {
+          code: e.code,
+        },
+      })
+      console.log('loginRes', loginRes)
+      // 将登录返回的 token 写入用户信息 Store（会自动持久化）
+      userInfoStore.setToken(loginRes?.data?.token || '')
+      userInfoStore.setUserinfo(loginRes?.data?.userinfo)
 
-    // 获取手机号
-    const phoneRes = await Apis.general.post_api_wechat_getphone({
-      data: {
-        encrypted_data: e.encryptedData,
-        iv: e.iv,
-      },
-    })
-    console.log(phoneRes)
-  }
+      globalToast.success('登录成功')
+    },
+  })
 }
 </script>
 
@@ -36,9 +38,8 @@ async function handleGetPhoneNumber(e: { code: string, encryptedData: string, iv
       <wd-button
         block
         type="primary"
-        open-type="getPhoneNumber"
         custom-class="!rounded-16rpx"
-        @getphonenumber="handleGetPhoneNumber"
+        @click="handleLogin"
       >
         微信授权登录
       </wd-button>

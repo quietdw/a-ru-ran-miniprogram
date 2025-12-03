@@ -56,15 +56,36 @@ export default <Config>{
        * filter or convert the generated api information, return an apiDescriptor, if this function is not specified, the apiDescripor object is not converted
        */
       handleApi: (apiDescriptor) => {
-        // Skip logging to console
-        console.log(apiDescriptor)
-
         // Filter out any deprecated APIs if needed
         if (apiDescriptor.deprecated) {
           return undefined // Skip this API
         }
-        // You can transform the API descriptor here if needed
-        // For example, add custom headers, modify parameters, etc.
+
+        // Fix login API response type - backend Swagger incorrectly defines it as string
+        // but it actually returns a unified response structure like other APIs
+        if (apiDescriptor.operationId === 'post_api_wechatuser_login') {
+          // Change from { type: 'string' } to the standard response wrapper structure
+          // that other APIs use (allOf pattern)
+          apiDescriptor.responses = {
+            allOf: [
+              { type: 'object' },
+              {
+                type: 'object',
+                properties: {
+                  code: { type: 'integer' },
+                  data: {
+                    type: 'object',
+                    properties: {
+                      token: { type: 'string' },
+                      userinfo: { type: 'object' },
+                    },
+                  },
+                  msg: { type: 'string' },
+                },
+              },
+            ],
+          }
+        }
 
         return apiDescriptor
       },
