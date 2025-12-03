@@ -21,6 +21,10 @@ export const alovaInstance = createAlova({
       method.config.params._t = Date.now()
     }
 
+    // add token to headers
+    const userInfoStore = useUserInfoStore()
+    method.config.headers['x-token'] = userInfoStore.token
+
     // Log request in development
     if (import.meta.env.MODE === 'development') {
       console.log(`[Alova Request] ${method.type} ${method.url}`, method.data || method.config.params)
