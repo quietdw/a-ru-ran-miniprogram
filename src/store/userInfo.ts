@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
-import type { Miniprogram_wechatuser } from '@/api/globals'
+
+type UserInfoResponse = Awaited<ReturnType<typeof Apis.general.post_api_wechatuser_login>>
+type UserInfoItem = NonNullable<NonNullable<UserInfoResponse['data']>['userinfo']>
 
 interface AddressInfo {
   cityName: string
@@ -13,7 +15,7 @@ interface AddressInfo {
 export const useUserInfoStore = defineStore('userInfo', {
   state: () => ({
     token: '',
-    userinfo: null as Miniprogram_wechatuser | null,
+    userinfo: null as UserInfoItem | null,
     addressInfo: null as AddressInfo | null,
   }),
 
@@ -34,7 +36,7 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.token = token
     },
 
-    setUserinfo(userinfo: Miniprogram_wechatuser | null) {
+    setUserinfo(userinfo: UserInfoItem | null) {
       this.userinfo = userinfo
     },
 

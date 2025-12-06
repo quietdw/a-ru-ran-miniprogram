@@ -236,6 +236,36 @@ export interface Request_reservationsrequest {
    */
   timeSlotId?: number;
 }
+export interface Request_wechatuserinfo {
+  /**
+   * 头像URL
+   */
+  avatar_url?: string;
+  /**
+   * 性别：0-未知，1-男，2-女
+   */
+  gender?: number;
+  /**
+   * 身份证反面照URL
+   */
+  id_car_back?: string;
+  /**
+   * 身份证号
+   */
+  id_card?: string;
+  /**
+   * 身份证正面照URL
+   */
+  id_card_front?: string;
+  /**
+   * 用户昵称
+   */
+  nick_name?: string;
+  /**
+   * 真实姓名
+   */
+  real_name?: string;
+}
 export interface Request_wechatmingetuserinfo {
   /**
    * @Description 724 微信的 encrypted_data
@@ -2597,6 +2627,74 @@ export interface Transformer_reservationstransformer {
    */
   timeSlotId?: number;
 }
+export interface Transformer_wechatusertransformer {
+  /**
+   * 头像URL
+   */
+  avatar_url?: string;
+  bath_count?: number;
+  /**
+   * 默认设备ID
+   */
+  default_device_id?: number;
+  /**
+   * 性别：0-未知，1-男，2-女
+   */
+  gender: number;
+  id?: number;
+  /**
+   * 身份证反面照URL
+   */
+  id_car_back?: string;
+  /**
+   * 身份证号
+   */
+  id_card: string;
+  /**
+   * 身份证正面照URL
+   */
+  id_card_front: string;
+  /**
+   * 手机号
+   */
+  mobile: string;
+  /**
+   * 用户昵称
+   */
+  nick_name: string;
+  /**
+   * 用户积分
+   */
+  points?: number;
+  /**
+   * 真实姓名
+   */
+  real_name: string;
+  /**
+   * 状态：0-正常，1-禁用
+   */
+  status: string;
+  /**
+   * 累计消费
+   */
+  total_consumption?: number;
+  /**
+   * 累计充值
+   */
+  total_recharge?: number;
+  /**
+   * 会员卡id
+   */
+  vip_card?: string;
+  /**
+   * 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+   */
+  vip_level?: number;
+  /**
+   * 用户卡包余额
+   */
+  wallet_balance?: number;
+}
 export interface Response_sysauthorityresponse {
   authority?: System_sysauthority;
 }
@@ -3631,6 +3729,190 @@ declare global {
       /**
        * ---
        *
+       * [GET] 获取用户信息
+       *
+       * **path:** /api/wechatuser
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = object & {
+       *   code?: number
+       *   data?: {
+       *     id?: number
+       *     nick_name?: object
+       *     mobile?: object
+       *     real_name?: object
+       *     id_card?: object
+       *     id_card_front?: object
+       *     id_car_back?: object
+       *     default_device_id?: number
+       *     avatar_url?: string
+       *     gender?: number
+       *     status?: string
+       *     vip_card?: object
+       *     vip_level?: number
+       *     points?: number
+       *     wallet_balance?: string
+       *     total_recharge?: string
+       *     total_consumption?: string
+       *     bath_count?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_api_wechatuser<
+        Config extends Alova2MethodConfig<
+          object & {
+            code?: number;
+            data?: {
+              id?: number;
+              nick_name?: object;
+              mobile?: object;
+              real_name?: object;
+              id_card?: object;
+              id_card_front?: object;
+              id_car_back?: object;
+              default_device_id?: number;
+              avatar_url?: string;
+              gender?: number;
+              status?: string;
+              vip_card?: object;
+              vip_level?: number;
+              points?: number;
+              wallet_balance?: string;
+              total_recharge?: string;
+              total_consumption?: string;
+              bath_count?: number;
+            };
+            msg?: string;
+          }
+        >
+      >(
+        config?: Config
+      ): Alova2Method<
+        object & {
+          code?: number;
+          data?: {
+            id?: number;
+            nick_name?: object;
+            mobile?: object;
+            real_name?: object;
+            id_card?: object;
+            id_card_front?: object;
+            id_car_back?: object;
+            default_device_id?: number;
+            avatar_url?: string;
+            gender?: number;
+            status?: string;
+            vip_card?: object;
+            vip_level?: number;
+            points?: number;
+            wallet_balance?: string;
+            total_recharge?: string;
+            total_consumption?: string;
+            bath_count?: number;
+          };
+          msg?: string;
+        },
+        'general.get_api_wechatuser',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [POST] 小程序获更新用户信息
+       *
+       * **path:** /api/wechatuser
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 头像URL
+       *   avatar_url?: string
+       *   // 性别：0-未知，1-男，2-女
+       *   gender?: number
+       *   // 身份证反面照URL
+       *   id_car_back?: string
+       *   // 身份证号
+       *   id_card?: string
+       *   // 身份证正面照URL
+       *   id_card_front?: string
+       *   // 用户昵称
+       *   nick_name?: string
+       *   // 真实姓名
+       *   real_name?: string
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   // 头像URL
+       *   avatar_url?: string
+       *   bath_count?: number
+       *   // 默认设备ID
+       *   default_device_id?: number
+       *   // 性别：0-未知，1-男，2-女
+       *   gender: number
+       *   id?: number
+       *   // 身份证反面照URL
+       *   id_car_back?: string
+       *   // 身份证号
+       *   id_card: string
+       *   // 身份证正面照URL
+       *   id_card_front: string
+       *   // 手机号
+       *   mobile: string
+       *   // 用户昵称
+       *   nick_name: string
+       *   // 用户积分
+       *   points?: number
+       *   // 真实姓名
+       *   real_name: string
+       *   // 状态：0-正常，1-禁用
+       *   status: string
+       *   // 累计消费
+       *   total_consumption?: number
+       *   // 累计充值
+       *   total_recharge?: number
+       *   // 会员卡id
+       *   vip_card?: string
+       *   // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *   vip_level?: number
+       *   // 用户卡包余额
+       *   wallet_balance?: number
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      post_api_wechatuser<
+        Config extends Alova2MethodConfig<
+          Transformer_wechatusertransformer & {
+            msg?: string;
+          }
+        > & {
+          data: Request_wechatuserinfo;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Transformer_wechatusertransformer & {
+          msg?: string;
+        },
+        'general.post_api_wechatuser',
+        Config
+      >;
+      /**
+       * ---
+       *
        * [POST] 小程序获取手机号
        *
        * **path:** /api/wechatuser/getphone
@@ -3703,10 +3985,7 @@ declare global {
        *   data?: {
        *     token?: string
        *     userinfo?: {
-       *       ID?: number
-       *       CreatedAt?: string
-       *       UpdatedAt?: string
-       *       open_id?: string
+       *       id?: number
        *       nick_name?: object
        *       mobile?: object
        *       real_name?: object
@@ -3714,8 +3993,6 @@ declare global {
        *       id_card_front?: object
        *       id_car_back?: object
        *       default_device_id?: number
-       *       encryption_key?: object
-       *       session_key?: string
        *       avatar_url?: string
        *       gender?: number
        *       status?: string
@@ -3726,9 +4003,6 @@ declare global {
        *       total_recharge?: string
        *       total_consumption?: string
        *       bath_count?: number
-       *       CreatedBy?: number
-       *       UpdatedBy?: number
-       *       DeletedBy?: number
        *     }
        *   }
        *   msg?: string
@@ -3742,10 +4016,7 @@ declare global {
             data?: {
               token?: string;
               userinfo?: {
-                ID?: number;
-                CreatedAt?: string;
-                UpdatedAt?: string;
-                open_id?: string;
+                id?: number;
                 nick_name?: object;
                 mobile?: object;
                 real_name?: object;
@@ -3753,8 +4024,6 @@ declare global {
                 id_card_front?: object;
                 id_car_back?: object;
                 default_device_id?: number;
-                encryption_key?: object;
-                session_key?: string;
                 avatar_url?: string;
                 gender?: number;
                 status?: string;
@@ -3765,9 +4034,6 @@ declare global {
                 total_recharge?: string;
                 total_consumption?: string;
                 bath_count?: number;
-                CreatedBy?: number;
-                UpdatedBy?: number;
-                DeletedBy?: number;
               };
             };
             msg?: string;
@@ -3783,10 +4049,7 @@ declare global {
           data?: {
             token?: string;
             userinfo?: {
-              ID?: number;
-              CreatedAt?: string;
-              UpdatedAt?: string;
-              open_id?: string;
+              id?: number;
               nick_name?: object;
               mobile?: object;
               real_name?: object;
@@ -3794,8 +4057,6 @@ declare global {
               id_card_front?: object;
               id_car_back?: object;
               default_device_id?: number;
-              encryption_key?: object;
-              session_key?: string;
               avatar_url?: string;
               gender?: number;
               status?: string;
@@ -3806,14 +4067,63 @@ declare global {
               total_recharge?: string;
               total_consumption?: string;
               bath_count?: number;
-              CreatedBy?: number;
-              UpdatedBy?: number;
-              DeletedBy?: number;
             };
           };
           msg?: string;
         },
         'general.post_api_wechatuser_login',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [POST] 小程序上传图片
+       *
+       * **path:** /api/wechatuser/upload
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 上传文件示例
+       *   file: Blob
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      post_api_wechatuser_upload<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            msg?: string;
+          }
+        > & {
+          data: {
+            /**
+             * 上传文件示例
+             */
+            file: Blob;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          msg?: string;
+        },
+        'general.post_api_wechatuser_upload',
         Config
       >;
     };

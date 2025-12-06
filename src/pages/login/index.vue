@@ -3,6 +3,7 @@ import Apis from '@/api'
 import { useUserInfoStore } from '@/store/userInfo'
 import { useGlobalToast } from '@/composables/useGlobalToast'
 import router from '@/router'
+import { getFileUrl } from '@/utils/file'
 
 definePage({
   name: 'login',
@@ -13,19 +14,35 @@ definePage({
 
 const userInfoStore = useUserInfoStore()
 const globalToast = useGlobalToast()
-async function handleLogin() {
+
+async function handleLogin(event1: {
+  code: string
+  encryptedData: string
+  iv: string
+}) {
   uni.login({
     provider: 'weixin',
-    success: async (e: { code: string }) => {
+    success: async (event2: { code: string }) => {
       const loginRes = await Apis.general.post_api_wechatuser_login({
         data: {
-          code: e.code,
+          code: event2.code,
         },
       })
-      console.log('loginRes', loginRes)
+
       // 将登录返回的 token 写入用户信息 Store（会自动持久化）
       userInfoStore.setToken(loginRes?.data?.token || '')
-      userInfoStore.setUserinfo(loginRes?.data?.userinfo)
+      userInfoStore.setUserinfo(loginRes?.data?.userinfo || null)
+
+      // 更新手机号
+      await Apis.general.post_api_wechatuser_getphone({
+        data: {
+          encrypted_data: event1.encryptedData,
+          iv: event1.iv,
+        },
+      })
+      // 获取用户信息
+      const userInfoRes = await Apis.general.get_api_wechatuser()
+      userInfoStore.setUserinfo(userInfoRes?.data || null)
 
       router.back()
 
@@ -36,13 +53,18 @@ async function handleLogin() {
 </script>
 
 <template>
-  <view class="2222">
+  <view class="login-page">
+    <!-- <view class="absolute left-0 top-0 w-full flex justify-center pt-100rpx">
+      阿如然登录
+    </view> -->
     <view class="mt-80vh px-20rpx">
       <wd-button
         block
         type="primary"
+        open-type="getPhoneNumber"
+
         custom-class="!rounded-16rpx"
-        @click="handleLogin"
+        @getphonenumber="handleLogin"
       >
         微信授权登录
       </wd-button>

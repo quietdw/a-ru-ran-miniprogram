@@ -267,6 +267,26 @@ export default <Config>{
         if (apiDescriptor.operationId === 'post_api_order') {
           apiDescriptor.responses = createResponseFromData({ code: 0, data: { id: 12, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: '', actual_delivery_time: '', delivery_note: '', order_status: '待支付', order_number: '1997257908554829824', created_at: '2025-12-06 18:52:47', product: { id: 0, product_name: '', net_weight: 100, shelfLife: null, origin: null, sales_count: 100, selling_price: 100, original_price: 100, product_category: '', image: '' } }, msg: '成功' })
         }
+        // post_api_wechatuser_login
+        if (apiDescriptor.operationId === 'post_api_wechatuser_login') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              token: '..cabcBAoldpYM82roeuNmqS-9q0_siKMIQx2VXCnmJTk',
+              userinfo: { id: 6, nick_name: null, mobile: null, real_name: null, id_card: null, id_card_front: null, id_car_back: null, default_device_id: 0, avatar_url: '', gender: 0, status: '1', vip_card: null, vip_level: 0, points: 0, wallet_balance: '0', total_recharge: '0', total_consumption: '0', bath_count: 0 },
+            },
+            msg: '成功',
+          })
+        }
+        // get_api_wechatuser
+        if (apiDescriptor.operationId === 'get_api_wechatuser') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: { id: 6, nick_name: null, mobile: null, real_name: null, id_card: null, id_card_front: null, id_car_back: null, default_device_id: 0, avatar_url: '', gender: 0, status: '1', vip_card: null, vip_level: 0, points: 0, wallet_balance: '0', total_recharge: '0', total_consumption: '0', bath_count: 0 },
+            msg: '成功',
+          })
+        }
+
         // console.log(apiDescriptor)
         return apiDescriptor
       },

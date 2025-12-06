@@ -73,10 +73,10 @@ export async function handleAlovaResponse(
   }
 
   console.log(json)
-  if (json.code !== 0) {
+  if (json?.code !== 0) {
     globalToast.error(json.msg || '请求失败')
 
-    throw new ApiError(json.msg || '请求失败', json.code, json.data)
+    throw new ApiError(json.msg || '请求失败', json?.code, json?.data)
   }
 
   // Return data for successful responses
