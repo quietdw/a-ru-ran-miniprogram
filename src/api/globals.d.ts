@@ -4943,18 +4943,70 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
+       *   data?: {
+       *     id?: number
+       *     product_id?: number
+       *     user_id?: number
+       *     order_amount?: string
+       *     user_phone?: string
+       *     delivery_address?: string
+       *     receiver_name?: string
+       *     expected_delivery_time?: string
+       *     actual_delivery_time?: string
+       *     delivery_note?: string
+       *     order_status?: string
+       *     order_number?: string
+       *     created_at?: string
+       *     product?: {
+       *       id?: number
+       *       product_name?: string
+       *       net_weight?: number
+       *       shelfLife?: object
+       *       origin?: object
+       *       sales_count?: number
+       *       selling_price?: number
+       *       original_price?: number
+       *       product_category?: string
+       *       image?: string
+       *     }
+       *   }
        *   msg?: string
        * }
        * ```
        */
       post_api_order<
         Config extends Alova2MethodConfig<
-          Response_response & {
+          object & {
+            code?: number;
+            data?: {
+              id?: number;
+              product_id?: number;
+              user_id?: number;
+              order_amount?: string;
+              user_phone?: string;
+              delivery_address?: string;
+              receiver_name?: string;
+              expected_delivery_time?: string;
+              actual_delivery_time?: string;
+              delivery_note?: string;
+              order_status?: string;
+              order_number?: string;
+              created_at?: string;
+              product?: {
+                id?: number;
+                product_name?: string;
+                net_weight?: number;
+                shelfLife?: object;
+                origin?: object;
+                sales_count?: number;
+                selling_price?: number;
+                original_price?: number;
+                product_category?: string;
+                image?: string;
+              };
+            };
             msg?: string;
           }
         > & {
@@ -4963,7 +5015,35 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
+        object & {
+          code?: number;
+          data?: {
+            id?: number;
+            product_id?: number;
+            user_id?: number;
+            order_amount?: string;
+            user_phone?: string;
+            delivery_address?: string;
+            receiver_name?: string;
+            expected_delivery_time?: string;
+            actual_delivery_time?: string;
+            delivery_note?: string;
+            order_status?: string;
+            order_number?: string;
+            created_at?: string;
+            product?: {
+              id?: number;
+              product_name?: string;
+              net_weight?: number;
+              shelfLife?: object;
+              origin?: object;
+              sales_count?: number;
+              selling_price?: number;
+              original_price?: number;
+              product_category?: string;
+              image?: string;
+            };
+          };
           msg?: string;
         },
         'order.post_api_order',

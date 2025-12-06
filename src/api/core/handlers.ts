@@ -44,11 +44,16 @@ export async function handleAlovaResponse(
 
   // 处理401/403错误（如果不是在handleAlovaResponse中处理的）
   if ((statusCode === 401 || statusCode === 403)) {
+    console.log(router)
+    if (router.route.value.name === 'login') {
+      return
+    }
     // 如果是未授权错误，清除用户信息并跳转到登录页
     globalToast.error({ msg: '登录已过期，请重新登录！', duration: 500 })
     const timer = setTimeout(() => {
       clearTimeout(timer)
-      router.replaceAll({ name: 'login' })
+
+      router.push({ name: 'login' })
     }, 500)
 
     throw new ApiError('登录已过期，请重新登录！', statusCode, data)

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { useUserInfoStore } from '@/store/userInfo'
+import { useGlobalToast } from '@/composables/useGlobalToast'
+
 type ProductListResponse = Awaited<ReturnType<typeof Apis.general.get_api_product>>
 type ProductItem = NonNullable<NonNullable<ProductListResponse['data']>['list']>[number]
 
@@ -9,6 +12,8 @@ const props = withDefaults(defineProps<{
 })
 
 const { show: showToast } = useGlobalToast()
+const { address, addressInfo } = storeToRefs(useUserInfoStore())
+const globalLoading = useGlobalLoading()
 
 const priceArray = computed(() => {
   return props.item.selling_price?.toString().split('.') || []
@@ -21,8 +26,39 @@ const salesCount = computed(() => {
   return `${(props.item.sales_count || 0 / 10000).toFixed(1)}万+`
 })
 
-function handleBuy() {
-  showToast('敬请期待')
+async function handleBuy() {
+  globalLoading.loading('正在生成订单...')
+  try {
+    const addressInfo = useUserInfoStore().addressInfo
+
+    if (!props.item?.id) {
+      return
+    }
+    const res = await Apis.order.post_api_order({
+      data: {
+        delivery_address: address.value,
+        delivery_note: undefined,
+        product_id: props.item?.id,
+        receiver_name: addressInfo?.userName || '',
+        user_phone: addressInfo?.telNumber || '',
+      },
+    })
+
+    const orderId = res.data?.id
+    if (!orderId) {
+      return
+    }
+    const payRes = await Apis.order.post_api_order_pay_id({
+      pathParams: {
+        id: orderId,
+      },
+    })
+
+    console.log(payRes, '222')
+  }
+  catch (error) {
+    globalLoading.close()
+  }
 }
 </script>
 

@@ -2,6 +2,7 @@
 import Apis from '@/api'
 import { useUserInfoStore } from '@/store/userInfo'
 import { useGlobalToast } from '@/composables/useGlobalToast'
+import router from '@/router'
 
 definePage({
   name: 'login',
@@ -25,6 +26,8 @@ async function handleLogin() {
       // 将登录返回的 token 写入用户信息 Store（会自动持久化）
       userInfoStore.setToken(loginRes?.data?.token || '')
       userInfoStore.setUserinfo(loginRes?.data?.userinfo)
+
+      router.back()
 
       globalToast.success('登录成功')
     },

@@ -9,7 +9,8 @@ type _LocationUrl =
   "/pages/consult/index" |
   "/pages/login/index" |
   "/pages/mall/index" |
-  "/pages/mine/index";
+  "/pages/mine/index" |
+  "/pages/order/list";
 
 interface NavigateToOptions {
   url: _LocationUrl;

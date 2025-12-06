@@ -263,6 +263,10 @@ export default <Config>{
           })
         }
 
+        // post_api_order
+        if (apiDescriptor.operationId === 'post_api_order') {
+          apiDescriptor.responses = createResponseFromData({ code: 0, data: { id: 12, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: '', actual_delivery_time: '', delivery_note: '', order_status: '待支付', order_number: '1997257908554829824', created_at: '2025-12-06 18:52:47', product: { id: 0, product_name: '', net_weight: 100, shelfLife: null, origin: null, sales_count: 100, selling_price: 100, original_price: 100, product_category: '', image: '' } }, msg: '成功' })
+        }
         // console.log(apiDescriptor)
         return apiDescriptor
       },

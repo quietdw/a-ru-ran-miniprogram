@@ -57,6 +57,10 @@
         "navigationBarTitleText": "我的",
         "navigationStyle": "custom"
       }
+    },
+    {
+      "path": "pages/order/list",
+      "type": "page"
     }
   ],
   "globalStyle": {
