@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
+import type { Miniprogram_wechatuser } from '@/api/globals'
 
 export const useUserInfoStore = defineStore('userInfo', {
   state: () => ({
     token: '',
-    userinfo: null,
+    userinfo: null as Miniprogram_wechatuser | null,
+    address: '',
   }),
 
   getters: {
@@ -17,14 +19,19 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.token = token
     },
 
-    setUserinfo(userinfo: any) {
+    setUserinfo(userinfo: Miniprogram_wechatuser | null) {
       this.userinfo = userinfo
+    },
+
+    setAddress(address: string) {
+      this.address = address
     },
 
     /** 退出登录，清空用户信息 */
     logout() {
-      this.token = ''
-      this.userinfo = null
+      this.setUserinfo(null)
+      this.setToken('')
+      this.setAddress('')
     },
   },
 })

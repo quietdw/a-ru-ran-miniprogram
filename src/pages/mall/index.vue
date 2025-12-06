@@ -2,6 +2,7 @@
 import ProductList from './components/product-list.vue'
 import PageBg from '@/components/common/page-bg.vue'
 import { getFileUrl } from '@/utils/file'
+import { useUserInfoStore } from '@/store/userInfo'
 
 definePage({
   name: 'mall',
@@ -13,6 +14,9 @@ definePage({
   },
 })
 
+const userInfoStore = useUserInfoStore()
+const { address } = storeToRefs(userInfoStore)
+
 // 搜索组件滚动状态
 const scrollTop = ref(0)
 
@@ -20,8 +24,6 @@ const scrollTop = ref(0)
 onPageScroll((e) => {
   scrollTop.value = e.scrollTop || 0
 })
-
-const currentAddress = ref('')
 
 const systemInfo = uni.getSystemInfoSync()
 
@@ -45,9 +47,16 @@ const tabs = ref([
 function handleSelectAddress() {
   console.log(2234)
   uni.chooseAddress({
-    success: (res) => {
+    success: (res: {
+      cityName: string
+      countyName: string
+      detailInfo: string
+      provinceName: string
+      telNumber: string
+      userName: string
+    }) => {
       console.log(res)
-      currentAddress.value = res.detail.address
+      userInfoStore.setAddress(`${res.provinceName} ${res.cityName} ${res.countyName} ${res.detailInfo}`)
     },
     fail: (err) => {
       console.log(err)
@@ -78,15 +87,15 @@ function handleSelectAddress() {
               <view class="content flex flex-col gap-24rpx" :style="{ width: `100vw` }">
                 <view class="address px-20rpx">
                   <view class="flex items-center">
-                    <image v-if="currentAddress" class="mr-12rpx h-36rpx w-36rpx" :src="getFileUrl('/img/location.svg')" />
-                    <view v-if="currentAddress" class="min-w-0 flex-1 truncate">
-                      地址：{{ currentAddress }}
+                    <image v-if="address" class="mr-12rpx h-36rpx w-36rpx" :src="getFileUrl('/img/location.svg')" />
+                    <view v-if="address" class="min-w-0 flex-1 truncate">
+                      地址：{{ address }}
                     </view>
 
                     <view class="ml-auto flex items-center" @click="handleSelectAddress">
                       <image class="mr-12rpx h-36rpx w-36rpx" :src="getFileUrl('/img/GPS.svg')" />
                       <text class="t-xs text-[var(--primary-color)]">
-                        {{ currentAddress ? '修改地址' : '添加地址' }}
+                        {{ address ? '修改地址' : '添加地址' }}
                       </text>
                     </view>
                   </view>

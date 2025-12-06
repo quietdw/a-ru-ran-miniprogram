@@ -2990,66 +2990,6 @@ declare global {
       /**
        * ---
        *
-       * [GET]
-       *
-       * **path:** /api/order/{id}
-       *
-       * ---
-       *
-       * **Path Parameters**
-       * ```ts
-       * type PathParameters = {
-       *   // ID
-       *   id: number
-       * }
-       * ```
-       *
-       * ---
-       *
-       * **Response**
-       * ```ts
-       * type Response = {
-       *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
-       *   data?: {
-       *     list?: null
-       *     page?: number
-       *     pageSize?: number
-       *     total?: number
-       *   }
-       *   msg?: string
-       * }
-       * ```
-       */
-      get_api_order_id<
-        Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Response_pageresult;
-            msg?: string;
-          }
-        > & {
-          pathParams: {
-            /**
-             * ID
-             */
-            id: number;
-          };
-        }
-      >(
-        config: Config
-      ): Alova2Method<
-        Response_response & {
-          data?: Response_pageresult;
-          msg?: string;
-        },
-        'general.get_api_order_id',
-        Config
-      >;
-      /**
-       * ---
-       *
        * [GET] 分页获取商品列表
        *
        * **path:** /api/product
@@ -5032,7 +4972,67 @@ declare global {
       /**
        * ---
        *
-       * [POST]
+       * [PUT] 根据订单ID取消待付款的订单
+       *
+       * **path:** /api/order/close/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // ID
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     list?: null
+       *     page?: number
+       *     pageSize?: number
+       *     total?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      put_api_order_close_id<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Response_pageresult;
+            msg?: string;
+          }
+        > & {
+          pathParams: {
+            /**
+             * ID
+             */
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Response_pageresult;
+          msg?: string;
+        },
+        'order.put_api_order_close_id',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [POST] 根据订单ID支付当前用户的订单
        *
        * **path:** /api/order/pay/{id}
        *
@@ -5087,6 +5087,126 @@ declare global {
           msg?: string;
         },
         'order.post_api_order_pay_id',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [PUT] 根据订单ID申请退款
+       *
+       * **path:** /api/order/refund/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // ID
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     list?: null
+       *     page?: number
+       *     pageSize?: number
+       *     total?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      put_api_order_refund_id<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Response_pageresult;
+            msg?: string;
+          }
+        > & {
+          pathParams: {
+            /**
+             * ID
+             */
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Response_pageresult;
+          msg?: string;
+        },
+        'order.put_api_order_refund_id',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 根据订单ID获取当前用户的订单详细信息
+       *
+       * **path:** /api/order/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // ID
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     list?: null
+       *     page?: number
+       *     pageSize?: number
+       *     total?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_api_order_id<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Response_pageresult;
+            msg?: string;
+          }
+        > & {
+          pathParams: {
+            /**
+             * ID
+             */
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Response_pageresult;
+          msg?: string;
+        },
+        'order.get_api_order_id',
         Config
       >;
     };
