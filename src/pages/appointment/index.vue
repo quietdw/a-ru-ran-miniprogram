@@ -38,14 +38,14 @@ const {
 } = usePagination(
   // Method实例获取函数，接收page和pageSize参数
   (page, pageSize) => {
-    return Apis.general.get_api_reservations({
+    return Apis.general.get_api_floors({
       params: { pageNum: page, pageSize },
     })
   },
   {
     // 指定 total 和 data 回调函数，确保 isLastPage 正确计算
     data: (res) => {
-      return res?.data
+      return res?.data?.list || []
     },
     total: (res) => {
       return res?.data?.total || 0
@@ -87,13 +87,9 @@ const {
       <wd-navbar placeholder safe-area-inset-top custom-style="background-color: transparent !important;" :bordered="false" />
 
       <view class="pt-32rpx" />
-      <view>
-        <ArrCard2 title="预约药浴">
-          <DateSelect />
-        </ArrCard2>
-        <view class="h-40rpx" />
-        <ArrCard2 title="私人聚餐">
-          <DateSelect />
+      <view class="flex flex-col gap-40rpx">
+        <ArrCard2 v-for="item in data" :key="item.id" :title="item.name">
+          <DateSelect :item="item" />
         </ArrCard2>
       </view>
     </view>

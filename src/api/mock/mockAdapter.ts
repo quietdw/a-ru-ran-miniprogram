@@ -15,6 +15,7 @@ import commonMocks from './modules/common'
 import petMocks from './modules/pet'
 import storeMocks from './modules/store'
 import userMocks from './modules/user'
+import accommodationMocks from './modules/accommodation'
 
 // 合并所有mock定义
 const allMocks = [
@@ -22,6 +23,7 @@ const allMocks = [
   petMocks,
   storeMocks,
   userMocks,
+  // accommodationMocks,
 ]
 
 // 创建mock适配器

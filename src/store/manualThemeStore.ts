@@ -99,7 +99,6 @@ export const useManualThemeStore = defineStore('manualTheme', {
       // catch (error) {
       //   console.warn('获取系统主题失败:', error)
       // }
-      console.log(3234)
 
       return 'light' // 默认返回 light
     },

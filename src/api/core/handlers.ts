@@ -8,6 +8,7 @@
  */
 import type { Method } from 'alova'
 import router from '@/router'
+import GlobalLoading from '@/components/GlobalLoading.vue'
 
 // Custom error class for API errors
 export class ApiError extends Error {
@@ -37,6 +38,7 @@ export async function handleAlovaResponse(
   response: UniApp.RequestSuccessCallbackResult | UniApp.UploadFileSuccessCallbackResult | UniApp.DownloadSuccessData,
 ) {
   const globalToast = useGlobalToast()
+  const globalLoading = useGlobalLoading()
   // Extract status code and data from UniApp response
   const { statusCode, data } = response as UniNamespace.RequestSuccessCallbackResult
 
@@ -63,6 +65,13 @@ export async function handleAlovaResponse(
   // Log response in development
   if (import.meta.env.MODE === 'development') {
     console.log('[Alova Response]', json)
+  }
+
+  console.log(json)
+  if (json.code !== 0) {
+    globalToast.error(json.msg || '请求失败')
+
+    throw new ApiError(json.msg || '请求失败', json.code, json.data)
   }
 
   // Return data for successful responses

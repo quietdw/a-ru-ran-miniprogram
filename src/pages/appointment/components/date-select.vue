@@ -2,15 +2,38 @@
 import { getWeekLabel } from 'wot-design-uni/components/wd-calendar-view/utils'
 import { formatDate } from '@/utils/date'
 import { getFileUrl } from '@/utils/file'
+import { useGlobalToast } from '@/composables/useGlobalToast'
+import GlobalLoading from '@/components/GlobalLoading.vue'
 
+const props = defineProps({
+  item: {
+    type: Object,
+    default: () => ({}),
+  },
+})
+const globalLoading = useGlobalLoading()
+const globalToast = useGlobalToast()
+
+type RoomListResponse = Awaited<ReturnType<typeof Apis.general.get_api_rooms>>
+type RoomItem = NonNullable<NonNullable<RoomListResponse['data']>['list']>[number]
+
+type TimeSlotResponse = Awaited<ReturnType<typeof Apis.general.get_api_reservations_room_roomid>>
+type TimeSlotItem = NonNullable<NonNullable<TimeSlotResponse['data']>['availables']>[number]
+
+// 查询房间列表
+
+// 选择的日期
 const selectedDate = ref('')
-const selectedTime = ref('')
-const selectedRoom = ref('')
+// 选择的时间段
+const selectedTimeSlotId = ref<number | undefined>(undefined)
+// 选择的房间
+const selectedRoomId = ref<number | undefined>(undefined)
 
+// 可预约日期列表
 const dateList = computed(() => {
   const today = new Date()
   const count = 30
-  const dateList = []
+  const d = []
   for (let i = 0; i < count; i++) {
     const date = new Date(today)
     date.setDate(today.getDate() + i)
@@ -19,74 +42,118 @@ const dateList = computed(() => {
     const dateItem = {
       label: i === 0 ? '今天' : `周${getWeekLabel(week)}`,
       value: formatDate(date, 'MM.d'),
+      valueStr: formatDate(date, 'yyyy-MM-dd'),
     }
-    dateList.push(dateItem)
+    d.push(dateItem)
   }
-  return dateList
+  return d
 })
+// 可选时间列表
+const timeList = ref<TimeSlotItem[]>([])
+// 可选房间列表
+const roomList = ref<RoomItem[]>([])
+// 时间id对应可选的房间id
+const timeIdToAvailableRoomIdMap = ref<Record<number, number[]>>({})
 
-const timeList = computed(() => {
-  return [{
-    label: '09:00~10:00',
-    value: '09:00~10:00',
-  }, {
-    label: '10:30~11:30',
-    value: '10:30~11:30',
-  }, {
-    label: '13:00~14:00',
-    value: '13:00~14:00',
-  }, {
-    label: '14:30~15:30',
-    value: '14:30~15:30',
-  }, {
-    label: '16:00~17:00',
-    value: '16:00~17:00',
-  }, {
-    label: '17:30~18:30',
-    value: '17:30~18:30',
-  }, {
-    label: '19:00~20:00',
-    value: '19:00~20:00',
-  }]
-})
-
-const roomList = computed(() => {
-  return [{
-    label: '1号房',
-    value: '1号房',
-    checked: false,
-  }, {
-    label: '2号房',
-    value: '2号房',
-    checked: false,
-  }, {
-    label: '3号房',
-    value: '3号房',
-    checked: false,
-  }, {
-    label: '4号房',
-    value: '4号房',
-    checked: true,
-  }]
-})
+const availableTimeList = ref<{ roomId: number | undefined, availables: TimeSlotItem[] }[]>([])
 
 function handleDateSelect(date: string) {
   selectedDate.value = date
-  selectedTime.value = ''
-  selectedRoom.value = ''
+  selectedTimeSlotId.value = undefined
+  selectedRoomId.value = undefined
+  initData(date)
 }
 
-function handleTimeSelect(time: string) {
-  selectedTime.value = time
-  selectedRoom.value = ''
+function handleTimeSelect(timeId: number | undefined) {
+  selectedTimeSlotId.value = timeId
+  selectedRoomId.value = undefined
 }
 
-function handleRoomSelect(room: string) {
-  selectedRoom.value = room
+function handleRoomSelect(roomId: number | undefined) {
+  selectedRoomId.value = roomId
 }
 
-function handleSubmit() {
-  console.log(selectedDate.value, selectedTime.value, selectedRoom.value)
+async function handleSubmit() {
+  if (!selectedTimeSlotId.value) {
+    return
+  }
+  globalLoading.loading('预约中...')
+
+  try {
+    await Apis.general.post_api_reservations({
+      data: {
+        date: new Date(selectedDate.value).toISOString(),
+        timeSlotId: selectedTimeSlotId.value,
+        roomId: selectedRoomId.value,
+      },
+    })
+    globalLoading.close()
+    globalToast.success('预约成功')
+
+    selectedRoomId.value = undefined
+
+    // 刷新数据
+    updateAvailableTimeList()
+  }
+  catch (error) {
+    globalLoading.close()
+    globalToast.error('预约失败')
+  }
+}
+
+initData(dateList.value[0].valueStr)
+async function initData(dateStr: string) {
+  timeIdToAvailableRoomIdMap.value = {}
+  timeList.value = []
+  roomList.value = []
+  availableTimeList.value = []
+
+  selectedDate.value = dateStr
+
+  const res = await Apis.general.get_api_rooms({
+    params: {
+      floorId: props.item.id,
+    },
+  })
+
+  roomList.value = res?.data?.list || []
+  await updateAvailableTimeList()
+}
+
+async function updateAvailableTimeList() {
+  const res3 = await Promise.all(roomList.value.map(async (item) => {
+    const res2 = await Apis.general.get_api_reservations_room_roomid({
+      pathParams: { roomId: item.id?.toString() || '' as unknown as string },
+      params: { date: selectedDate.value },
+    })
+    return {
+      roomId: item.id,
+      availables: res2?.data?.availables || [],
+    }
+  }))
+
+  availableTimeList.value = res3
+
+  const pushedTimeSlotIdList: number[] = []
+  const tList: TimeSlotItem[] = []
+
+  timeIdToAvailableRoomIdMap.value = {}
+  availableTimeList.value.forEach((item) => {
+    item.availables.forEach((time) => {
+
+      // 添加时间
+      if (time.timeSlotId && !pushedTimeSlotIdList.includes(time.timeSlotId)) {
+        pushedTimeSlotIdList.push(time.timeSlotId)
+        tList.push(time)
+      }
+
+      // 添加时间id对应可选的房间id
+      if (time.timeSlotId && item.roomId && time.available) {
+        timeIdToAvailableRoomIdMap.value[time.timeSlotId] = [...(timeIdToAvailableRoomIdMap.value[time.timeSlotId] || []), item.roomId]
+      }
+    })
+  })
+  timeList.value = tList
 }
 </script>
 
@@ -101,18 +168,18 @@ export default {
 </script>
 
 <template>
-  <view class="flex flex-col gap-20rpx">
+  <view class="min-h-300rpx flex flex-col gap-20rpx">
     <view class="date-select overflow-hidden rounded-32rpx bg-#FFF4F4">
       <scroll-view scroll-x>
         <view class="flex flex-nowrap gap-8rpx">
           <view
-            v-for="(item, index) in dateList" :key="item.value" class="date-item flex flex-col items-center px-13rpx py-8rpx"
+            v-for="(item, index) in dateList" :key="item.valueStr" class="date-item flex flex-col items-center px-13rpx py-8rpx"
             :class="{
               'pl-28rpx': index === 0,
               'pr-28rpx': index === dateList.length - 1,
-              'bg-#FFE0E0': selectedDate === item.value,
+              'bg-#FFE0E0': selectedDate === item.valueStr,
             }"
-            @tap="handleDateSelect(item.value)"
+            @tap="handleDateSelect(item.valueStr)"
           >
             <view class="t-xs mb-4rpx text-#666">
               {{ item.label }}
@@ -124,58 +191,64 @@ export default {
         </view>
       </scroll-view>
     </view>
-    <view class="date-time-select mx--20rpx">
+    <view v-if="selectedDate" class="date-time-select mx--20rpx">
       <wd-row :gutter="10">
-        <wd-col v-for="item in timeList" :key="item.value" :span="8">
+        <wd-col v-for="item in timeList" :key="item.timeSlotId" :span="8">
           <view
 
             class="mb-20rpx rounded-32rpx bg-#F4F4F4 px-11rpx py-8rpx" :class="{
-              '!bg-#D4F9D9': selectedTime === item.value,
-              '!text-#009F03': selectedTime === item.value,
+              '!bg-#D4F9D9': selectedTimeSlotId === item.timeSlotId,
+              '!text-#009F03': selectedTimeSlotId === item.timeSlotId,
+
             }"
-            @tap="handleTimeSelect(item.value)"
+            @tap="item.available && handleTimeSelect(item.timeSlotId)"
           >
-            <view class="t-s text-center text-#333">
+            <view
+              class="t-s text-center" :class="{
+                '!text-#333': item.available,
+                '!text-#999': !item.available,
+              }"
+            >
               {{ item.label }}
             </view>
           </view>
         </wd-col>
       </wd-row>
     </view>
-    <view class="room-select flex flex-wrap justify-center gap-40rpx">
-      <view v-for="item in roomList" :key="item.value">
-        <view class="t-xs mb-4rpx text-#666" @tap="!item.checked && handleRoomSelect(item.value)">
-          <view v-if="item.value === selectedRoom" class="flex flex-col items-center gap-8rpx">
-            <image :src="getFileUrl('/img/check-success.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
-            <view class="t-xs">
-              预约
-            </view>
-            <view class="t-xxs">
-              {{ item.label }}
-            </view>
-          </view>
-          <view v-else-if="item.checked" class="flex flex-col items-center gap-8rpx">
+    <view v-if="selectedTimeSlotId" class="room-select flex flex-wrap justify-center gap-40rpx">
+      <view v-for="room in roomList" :key="room.id">
+        <view class="t-xs mb-4rpx text-#666">
+          <view v-if="room.id && !timeIdToAvailableRoomIdMap[selectedTimeSlotId]?.includes(room.id)" key="1" class="flex flex-col items-center gap-8rpx">
             <image :src="getFileUrl('/img/check-warning.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
             <view class="t-xs">
               已预约
             </view>
             <view class="t-xxs">
-              {{ item.label }}
+              {{ room.name }}
             </view>
           </view>
-          <view v-else class="flex flex-col items-center gap-8rpx">
+          <view v-else-if="room.id === selectedRoomId" key="2" class="flex flex-col items-center gap-8rpx">
+            <image :src="getFileUrl('/img/check-success.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
+            <view class="t-xs">
+              预约
+            </view>
+            <view class="t-xxs">
+              {{ room.name }}
+            </view>
+          </view>
+          <view v-else key="3" class="flex flex-col items-center gap-8rpx" @click="handleRoomSelect(room.id)">
             <image :src="getFileUrl('/img/check-normal.svg')" mode="aspectFill" class="h-60rpx w-60rpx" />
             <view class="t-xs">
               空闲
             </view>
             <view class="t-xxs">
-              {{ item.label }}
+              {{ room.name }}
             </view>
           </view>
         </view>
       </view>
     </view>
-    <wd-button :disabled="!selectedDate || !selectedTime || !selectedRoom" block custom-class="!rounded-16rpx !bg-#2D62B8" @tap="handleSubmit">
+    <wd-button v-if="selectedDate && selectedTimeSlotId && selectedRoomId" block custom-class="!rounded-16rpx !bg-#2D62B8" @tap="handleSubmit">
       立即预约
     </wd-button>
   </view>

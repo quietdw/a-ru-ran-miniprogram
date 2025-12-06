@@ -139,4 +139,25 @@ export const generateMockData = {
     const stats = [100, 1300, 300, 110, 1310]
     return stats[generateMockData.number(0, stats.length - 1)]
   },
+
+  // 生成楼层对象
+  floor: (index: number) => ({
+    ID: index,
+    name: `${index}楼`,
+    sort_order: index,
+    createdAt: generateMockData.datetime(-60),
+    updatedAt: generateMockData.datetime(),
+    createdBy: 1,
+  }),
+
+  // 生成房间对象
+  room: (index: number) => ({
+    ID: index,
+    name: `房间${index}`,
+    floorId: generateMockData.number(1, 5),
+    createdAt: generateMockData.datetime(-30),
+    updatedAt: generateMockData.datetime(),
+    createdBy: 1,
+  }),
+
 }

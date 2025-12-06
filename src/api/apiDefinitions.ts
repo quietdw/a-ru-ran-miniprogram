@@ -37,6 +37,7 @@ export default {
   'IgnoreApi.post_api_ignoreapi': ['POST', '/api/ignoreApi'],
   'order.get_api_order': ['GET', '/api/order'],
   'order.post_api_order': ['POST', '/api/order'],
+  'order.post_api_order_pay_id': ['POST', '/api/order/pay/{id}'],
   'general.get_api_order_id': ['GET', '/api/order/{id}'],
   'general.get_api_product': ['GET', '/api/product'],
   'general.get_api_reservations': ['GET', '/api/reservations'],

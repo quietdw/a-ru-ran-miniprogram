@@ -2551,14 +2551,14 @@ export interface Transformer_devicetransformer {
   device_name: string;
   id?: number;
 }
+export interface Response_sysapiresponse {
+  api?: System_sysapi;
+}
 export interface Response_pageresult {
   list?: null;
   page?: number;
   pageSize?: number;
   total?: number;
-}
-export interface Response_sysapiresponse {
-  api?: System_sysapi;
 }
 export interface Transformer_producttransformer {
   /**
@@ -2753,29 +2753,6 @@ export interface Response_sysmenusresponse {
 }
 export interface Response_sysuserresponse {
   user?: System_sysuser;
-}
-export interface Miniprogram_slotavailability {
-  /**
-   * true = 可预订, false = 已被占用
-   */
-  available?: boolean;
-  /**
-   * 格式 "15:04:05"
-   */
-  endTime?: string;
-  /**
-   * 时段名称
-   */
-  label?: string;
-  reservationId?: number;
-  /**
-   * 格式 "15:04:05"
-   */
-  startTime?: string;
-  /**
-   * 时段id
-   */
-  timeSlotId?: number;
 }
 declare global {
   interface Apis {
@@ -2973,16 +2950,18 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     list?: null
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: number
+       *       name?: string
+       *     }>
+       *     total?: number
        *     page?: number
        *     pageSize?: number
-       *     total?: number
        *   }
        *   msg?: string
        * }
@@ -2990,8 +2969,17 @@ declare global {
        */
       get_api_floors<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Response_pageresult;
+          object & {
+            code?: number;
+            data?: {
+              list?: Array<{
+                id?: number;
+                name?: string;
+              }>;
+              total?: number;
+              page?: number;
+              pageSize?: number;
+            };
             msg?: string;
           }
         > & {
@@ -3017,8 +3005,17 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Response_pageresult;
+        object & {
+          code?: number;
+          data?: {
+            list?: Array<{
+              id?: number;
+              name?: string;
+            }>;
+            total?: number;
+            page?: number;
+            pageSize?: number;
+          };
           msg?: string;
         },
         'general.get_api_floors',
@@ -3448,23 +3445,20 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     // true = 可预订, false = 已被占用
-       *     available?: boolean
-       *     // 格式 "15:04:05"
-       *     endTime?: string
-       *     // 时段名称
-       *     label?: string
-       *     reservationId?: number
-       *     // 格式 "15:04:05"
-       *     startTime?: string
-       *     // 时段id
-       *     timeSlotId?: number
+       *     // [items] start
+       *     // [items] end
+       *     availables?: Array<{
+       *       timeSlotId?: number
+       *       label?: string
+       *       startTime?: string
+       *       endTime?: string
+       *       available?: boolean
+       *     }>
+       *     date?: string
+       *     roomId?: number
        *   }
        *   msg?: string
        * }
@@ -3472,8 +3466,19 @@ declare global {
        */
       get_api_reservations_room_roomid<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Miniprogram_slotavailability;
+          object & {
+            code?: number;
+            data?: {
+              availables?: Array<{
+                timeSlotId?: number;
+                label?: string;
+                startTime?: string;
+                endTime?: string;
+                available?: boolean;
+              }>;
+              date?: string;
+              roomId?: number;
+            };
             msg?: string;
           }
         > & {
@@ -3493,8 +3498,19 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Miniprogram_slotavailability;
+        object & {
+          code?: number;
+          data?: {
+            availables?: Array<{
+              timeSlotId?: number;
+              label?: string;
+              startTime?: string;
+              endTime?: string;
+              available?: boolean;
+            }>;
+            date?: string;
+            roomId?: number;
+          };
           msg?: string;
         },
         'general.get_api_reservations_room_roomid',
@@ -3602,16 +3618,19 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     list?: null
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: number
+       *       floorId?: number
+       *       name?: string
+       *     }>
+       *     total?: number
        *     page?: number
        *     pageSize?: number
-       *     total?: number
        *   }
        *   msg?: string
        * }
@@ -3619,8 +3638,18 @@ declare global {
        */
       get_api_rooms<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Response_pageresult;
+          object & {
+            code?: number;
+            data?: {
+              list?: Array<{
+                id?: number;
+                floorId?: number;
+                name?: string;
+              }>;
+              total?: number;
+              page?: number;
+              pageSize?: number;
+            };
             msg?: string;
           }
         > & {
@@ -3648,8 +3677,18 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Response_pageresult;
+        object & {
+          code?: number;
+          data?: {
+            list?: Array<{
+              id?: number;
+              floorId?: number;
+              name?: string;
+            }>;
+            total?: number;
+            page?: number;
+            pageSize?: number;
+          };
           msg?: string;
         },
         'general.get_api_rooms',
@@ -3729,7 +3768,34 @@ declare global {
        *   code?: number
        *   data?: {
        *     token?: string
-       *     userinfo?: object
+       *     userinfo?: {
+       *       ID?: number
+       *       CreatedAt?: string
+       *       UpdatedAt?: string
+       *       open_id?: string
+       *       nick_name?: object
+       *       mobile?: object
+       *       real_name?: object
+       *       id_card?: object
+       *       id_card_front?: object
+       *       id_car_back?: object
+       *       default_device_id?: number
+       *       encryption_key?: object
+       *       session_key?: string
+       *       avatar_url?: string
+       *       gender?: number
+       *       status?: string
+       *       vip_card?: object
+       *       vip_level?: number
+       *       points?: number
+       *       wallet_balance?: string
+       *       total_recharge?: string
+       *       total_consumption?: string
+       *       bath_count?: number
+       *       CreatedBy?: number
+       *       UpdatedBy?: number
+       *       DeletedBy?: number
+       *     }
        *   }
        *   msg?: string
        * }
@@ -3741,7 +3807,34 @@ declare global {
             code?: number;
             data?: {
               token?: string;
-              userinfo?: object;
+              userinfo?: {
+                ID?: number;
+                CreatedAt?: string;
+                UpdatedAt?: string;
+                open_id?: string;
+                nick_name?: object;
+                mobile?: object;
+                real_name?: object;
+                id_card?: object;
+                id_card_front?: object;
+                id_car_back?: object;
+                default_device_id?: number;
+                encryption_key?: object;
+                session_key?: string;
+                avatar_url?: string;
+                gender?: number;
+                status?: string;
+                vip_card?: object;
+                vip_level?: number;
+                points?: number;
+                wallet_balance?: string;
+                total_recharge?: string;
+                total_consumption?: string;
+                bath_count?: number;
+                CreatedBy?: number;
+                UpdatedBy?: number;
+                DeletedBy?: number;
+              };
             };
             msg?: string;
           }
@@ -3755,7 +3848,34 @@ declare global {
           code?: number;
           data?: {
             token?: string;
-            userinfo?: object;
+            userinfo?: {
+              ID?: number;
+              CreatedAt?: string;
+              UpdatedAt?: string;
+              open_id?: string;
+              nick_name?: object;
+              mobile?: object;
+              real_name?: object;
+              id_card?: object;
+              id_card_front?: object;
+              id_car_back?: object;
+              default_device_id?: number;
+              encryption_key?: object;
+              session_key?: string;
+              avatar_url?: string;
+              gender?: number;
+              status?: string;
+              vip_card?: object;
+              vip_level?: number;
+              points?: number;
+              wallet_balance?: string;
+              total_recharge?: string;
+              total_consumption?: string;
+              bath_count?: number;
+              CreatedBy?: number;
+              UpdatedBy?: number;
+              DeletedBy?: number;
+            };
           };
           msg?: string;
         },
@@ -4911,6 +5031,66 @@ declare global {
           msg?: string;
         },
         'order.post_api_order',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [POST]
+       *
+       * **path:** /api/order/pay/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // ID
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     list?: null
+       *     page?: number
+       *     pageSize?: number
+       *     total?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      post_api_order_pay_id<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Response_pageresult;
+            msg?: string;
+          }
+        > & {
+          pathParams: {
+            /**
+             * ID
+             */
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Response_pageresult;
+          msg?: string;
+        },
+        'order.post_api_order_pay_id',
         Config
       >;
     };

@@ -5,6 +5,75 @@ import type { Config } from '@alova/wormhole'
 // For more config detailed visit:
 // https://alova.js.org/tutorial/getting-started/extension-integration
 
+/**
+ * Infer OpenAPI schema type from a value
+ */
+function inferTypeFromValue(value: any): any {
+  if (value === null || value === undefined) {
+    return { type: 'object' }
+  }
+
+  const valueType = typeof value
+
+  if (valueType === 'string') {
+    return { type: 'string' }
+  }
+
+  if (valueType === 'number') {
+    return Number.isInteger(value) ? { type: 'integer' } : { type: 'number' }
+  }
+
+  if (valueType === 'boolean') {
+    return { type: 'boolean' }
+  }
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      return { type: 'array', items: { type: 'object' } }
+    }
+    return {
+      type: 'array',
+      items: inferTypeFromValue(value[0]),
+    }
+  }
+
+  if (valueType === 'object') {
+    const properties: any = {}
+    for (const key in value) {
+      if (Object.prototype.hasOwnProperty.call(value, key)) {
+        properties[key] = inferTypeFromValue(value[key])
+      }
+    }
+    return {
+      type: 'object',
+      properties,
+    }
+  }
+
+  return { type: 'object' }
+}
+
+/**
+ * Create standard response structure from response example data
+ */
+function createResponseFromData(responseExample: any) {
+  const dataSchema = inferTypeFromValue(responseExample.data)
+
+  return {
+    allOf: [
+      { type: 'object' },
+      {
+        type: 'object',
+        properties: {
+          code: { type: 'integer' },
+          data: dataSchema,
+          msg: { type: 'string' },
+        },
+      },
+    ],
+  }
+}
+
 export default <Config>{
   generator: [
     {
@@ -64,29 +133,108 @@ export default <Config>{
         // Fix login API response type - backend Swagger incorrectly defines it as string
         // but it actually returns a unified response structure like other APIs
         if (apiDescriptor.operationId === 'post_api_wechatuser_login') {
-          // Change from { type: 'string' } to the standard response wrapper structure
-          // that other APIs use (allOf pattern)
-          apiDescriptor.responses = {
-            allOf: [
-              { type: 'object' },
-              {
-                type: 'object',
-                properties: {
-                  code: { type: 'integer' },
-                  data: {
-                    type: 'object',
-                    properties: {
-                      token: { type: 'string' },
-                      userinfo: { type: 'object' },
-                    },
-                  },
-                  msg: { type: 'string' },
-                },
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              token: 'string_token',
+              userinfo: {
+                ID: 6,
+                CreatedAt: '2025-12-03T18:50:58.559+08:00',
+                UpdatedAt: '2025-12-03T19:00:49.888+08:00',
+                open_id: 'of2xy1_fjEzbL0nsZ9qWjFeDr-Cg',
+                nick_name: null,
+                mobile: null,
+                real_name: null,
+                id_card: null,
+                id_card_front: null,
+                id_car_back: null,
+                default_device_id: 0,
+                encryption_key: null,
+                session_key: '+2EkEWcs70Ih/8t9Cirttg==',
+                avatar_url: '',
+                gender: 0,
+                status: '1',
+                vip_card: null,
+                vip_level: 0,
+                points: 0,
+                wallet_balance: '0',
+                total_recharge: '0',
+                total_consumption: '0',
+                bath_count: 0,
+                CreatedBy: 0,
+                UpdatedBy: 0,
+                DeletedBy: 0,
               },
-            ],
-          }
+            },
+            msg: '成功',
+          })
         }
 
+        // Fix floors API
+        if (apiDescriptor.operationId === 'get_api_floors') {
+          apiDescriptor.responses = createResponseFromData(
+            {
+              code: 0,
+              data: {
+                list: [
+                  {
+                    id: 1,
+                    name: '药浴预约',
+                  },
+                  {
+                    id: 2,
+                    name: '私人聚餐',
+                  },
+                ],
+                total: 2,
+                page: 0,
+                pageSize: 0,
+              },
+              msg: '获取成功',
+            },
+          )
+        }
+
+        // Fix rooms API
+        if (apiDescriptor.operationId === 'get_api_rooms') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              list: [
+                {
+                  id: 1,
+                  floorId: 1,
+                  name: '1号房间',
+                },
+              ],
+              total: 5,
+              page: 0,
+              pageSize: 0,
+            },
+            msg: '获取成功',
+          })
+        }
+
+        // Fix available timeslots API
+        if (apiDescriptor.operationId === 'get_api_reservations_room_roomid') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              availables: [
+                {
+                  timeSlotId: 1,
+                  label: '9:00-10:00',
+                  startTime: '09:00:58',
+                  endTime: '10:00:00',
+                  available: true,
+                },
+              ],
+              date: '2025-12-05',
+              roomId: 1,
+            },
+            msg: '成功',
+          })
+        }
         return apiDescriptor
       },
     },
