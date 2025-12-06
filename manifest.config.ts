@@ -10,9 +10,8 @@
 import { defineManifestConfig } from '@uni-helper/vite-plugin-uni-manifest'
 
 export default defineManifestConfig({
-  'name': 'wot-starter',
-  'appid': '__UNI__1208592',
-  'description': '',
+  'name': '阿如然',
+  'description': '阿如然',
   'versionName': '1.0.0',
   'versionCode': '100',
   'transformPx': false,
