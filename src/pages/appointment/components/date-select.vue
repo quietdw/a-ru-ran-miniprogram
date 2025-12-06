@@ -248,7 +248,7 @@ export default {
         </view>
       </view>
     </view>
-    <wd-button v-if="selectedDate && selectedTimeSlotId && selectedRoomId" block custom-class="!rounded-16rpx !bg-#2D62B8" @tap="handleSubmit">
+    <wd-button v-if="selectedDate && selectedTimeSlotId && selectedRoomId" block custom-class="!rounded-16rpx !bg-[var(--primary-color)]" @tap="handleSubmit">
       立即预约
     </wd-button>
   </view>

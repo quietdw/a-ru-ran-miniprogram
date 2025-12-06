@@ -71,6 +71,7 @@ export default defineManifestConfig({
     usingComponents: true,
     darkmode: false,
     themeLocation: 'theme.json',
+    requiredPrivateInfos: ['chooseAddress'],
   },
   'mp-alipay': {
     usingComponents: true,

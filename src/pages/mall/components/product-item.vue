@@ -104,7 +104,7 @@ export default {
         <view class="flex self-end">
           <wd-button
             size="small"
-            custom-class="!rounded-16rpx !bg-#2D62B8"
+            custom-class="!rounded-16rpx !bg-[var(--primary-color)]"
             @tap="handleBuy"
           >
             立即购买

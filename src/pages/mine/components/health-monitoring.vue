@@ -37,7 +37,7 @@ export default {
           <view class="t-s text-#999">
             已同步所有数据
           </view>
-          <wd-button size="small" custom-class="!h-50rpx !w-140rpx rounded-16rpx !bg-#2D62B8">
+          <wd-button size="small" custom-class="!h-50rpx !w-140rpx rounded-16rpx !bg-[var(--primary-color)]">
             健康监测
           </wd-button>
         </view>

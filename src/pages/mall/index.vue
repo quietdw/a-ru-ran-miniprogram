@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ProductList from './components/product-list.vue'
 import PageBg from '@/components/common/page-bg.vue'
+import { getFileUrl } from '@/utils/file'
 
 definePage({
   name: 'mall',
@@ -20,6 +21,8 @@ onPageScroll((e) => {
   scrollTop.value = e.scrollTop || 0
 })
 
+const currentAddress = ref('')
+
 const systemInfo = uni.getSystemInfoSync()
 
 const offsetTop = computed(() => {
@@ -38,6 +41,19 @@ const tabs = ref([
   { text: '全部', value: 0 },
   { text: '闪送', value: 1 },
 ])
+
+function handleSelectAddress() {
+  console.log(2234)
+  uni.chooseAddress({
+    success: (res) => {
+      console.log(res)
+      currentAddress.value = res.detail.address
+    },
+    fail: (err) => {
+      console.log(err)
+    },
+  })
+}
 </script>
 
 <template>
@@ -59,7 +75,23 @@ const tabs = ref([
         >
           <block v-for="item in tabs" :key="item.value">
             <wd-tab :title="item.text">
-              <view class="content" :style="{ width: `100vw` }">
+              <view class="content flex flex-col gap-24rpx" :style="{ width: `100vw` }">
+                <view class="address px-20rpx">
+                  <view class="flex items-center">
+                    <image v-if="currentAddress" class="mr-12rpx h-36rpx w-36rpx" :src="getFileUrl('/img/location.svg')" />
+                    <view v-if="currentAddress" class="min-w-0 flex-1 truncate">
+                      地址：{{ currentAddress }}
+                    </view>
+
+                    <view class="ml-auto flex items-center" @click="handleSelectAddress">
+                      <image class="mr-12rpx h-36rpx w-36rpx" :src="getFileUrl('/img/GPS.svg')" />
+                      <text class="t-xs text-[var(--primary-color)]">
+                        {{ currentAddress ? '修改地址' : '添加地址' }}
+                      </text>
+                    </view>
+                  </view>
+                </view>
+
                 <product-list :value="item.value" />
               </view>
             </wd-tab>
