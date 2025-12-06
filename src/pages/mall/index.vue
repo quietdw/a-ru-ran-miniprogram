@@ -14,8 +14,8 @@ definePage({
   },
 })
 
-const userInfoStore = useUserInfoStore()
-const { address } = storeToRefs(userInfoStore)
+const { setAddressInfo } = useUserInfoStore()
+const { address } = storeToRefs(useUserInfoStore())
 
 // 搜索组件滚动状态
 const scrollTop = ref(0)
@@ -48,16 +48,8 @@ const tabs = ref([
 function handleSelectAddress() {
   console.log(2234)
   uni.chooseAddress({
-    success: (res: {
-      cityName: string
-      countyName: string
-      detailInfo: string
-      provinceName: string
-      telNumber: string
-      userName: string
-    }) => {
-      console.log(res)
-      userInfoStore.setAddress(`${res.provinceName} ${res.cityName} ${res.countyName} ${res.detailInfo}`)
+    success: (res) => {
+      setAddressInfo(res)
     },
     fail: (err) => {
       console.log(err)
