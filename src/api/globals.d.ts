@@ -5165,16 +5165,41 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     list?: null
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: number
+       *       product_id?: number
+       *       user_id?: number
+       *       order_amount?: string
+       *       user_phone?: string
+       *       delivery_address?: string
+       *       receiver_name?: string
+       *       expected_delivery_time?: object
+       *       actual_delivery_time?: object
+       *       delivery_note?: object
+       *       order_status?: string
+       *       order_number?: string
+       *       created_at?: string
+       *       product?: {
+       *         id?: number
+       *         product_name?: string
+       *         net_weight?: string
+       *         shelfLife?: string
+       *         origin?: string
+       *         sales_count?: number
+       *         selling_price?: string
+       *         original_price?: string
+       *         product_category?: string
+       *         image?: string
+       *       }
+       *     }>
+       *     total?: number
        *     page?: number
        *     pageSize?: number
-       *     total?: number
        *   }
        *   msg?: string
        * }
@@ -5182,8 +5207,40 @@ declare global {
        */
       get_api_order<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Response_pageresult;
+          object & {
+            code?: number;
+            data?: {
+              list?: Array<{
+                id?: number;
+                product_id?: number;
+                user_id?: number;
+                order_amount?: string;
+                user_phone?: string;
+                delivery_address?: string;
+                receiver_name?: string;
+                expected_delivery_time?: object;
+                actual_delivery_time?: object;
+                delivery_note?: object;
+                order_status?: string;
+                order_number?: string;
+                created_at?: string;
+                product?: {
+                  id?: number;
+                  product_name?: string;
+                  net_weight?: string;
+                  shelfLife?: string;
+                  origin?: string;
+                  sales_count?: number;
+                  selling_price?: string;
+                  original_price?: string;
+                  product_category?: string;
+                  image?: string;
+                };
+              }>;
+              total?: number;
+              page?: number;
+              pageSize?: number;
+            };
             msg?: string;
           }
         > & {
@@ -5215,8 +5272,40 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Response_pageresult;
+        object & {
+          code?: number;
+          data?: {
+            list?: Array<{
+              id?: number;
+              product_id?: number;
+              user_id?: number;
+              order_amount?: string;
+              user_phone?: string;
+              delivery_address?: string;
+              receiver_name?: string;
+              expected_delivery_time?: object;
+              actual_delivery_time?: object;
+              delivery_note?: object;
+              order_status?: string;
+              order_number?: string;
+              created_at?: string;
+              product?: {
+                id?: number;
+                product_name?: string;
+                net_weight?: string;
+                shelfLife?: string;
+                origin?: string;
+                sales_count?: number;
+                selling_price?: string;
+                original_price?: string;
+                product_category?: string;
+                image?: string;
+              };
+            }>;
+            total?: number;
+            page?: number;
+            pageSize?: number;
+          };
           msg?: string;
         },
         'order.get_api_order',

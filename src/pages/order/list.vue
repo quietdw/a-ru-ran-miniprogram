@@ -33,10 +33,10 @@ const tabs = ref([
       :slidable-num="7" swipeable animated
       sticky
     >
-      <block v-for="item in tabs" :key="item.value">
+      <block v-for="(item, index) in tabs" :key="item.value">
         <wd-tab :title="item.text">
           <view class="content flex flex-col gap-24rpx" :style="{ width: `100vw` }">
-            <order-list :type="item.value" />
+            <order-list v-if="tabCurrentIndex === index" :type="item.value" />
           </view>
         </wd-tab>
       </block>
