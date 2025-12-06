@@ -83,7 +83,7 @@ export default {
 </script>
 
 <template>
-  <view class="product-list flex flex-col gap-28rpx px-24rpx">
+  <view class="product-list min-h-100vh flex flex-col gap-28rpx px-24rpx">
     <ProductItem v-for="item in data" :key="item.id" :item="item" />
     <template v-if="!loading && !data?.length ">
       <Empty />

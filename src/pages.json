@@ -60,7 +60,12 @@
     },
     {
       "path": "pages/order/list",
-      "type": "page"
+      "type": "page",
+      "name": "order-list",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "订单列表"
+      }
     }
   ],
   "globalStyle": {
