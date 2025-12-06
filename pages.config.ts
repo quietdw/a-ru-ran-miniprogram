@@ -55,4 +55,5 @@ export default defineUniPages({
       pagePath: 'pages/appointment/index',
     }],
   },
+
 })

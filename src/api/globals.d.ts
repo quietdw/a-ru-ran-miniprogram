@@ -202,6 +202,10 @@ export interface Request_orderrequest {
    */
   delivery_note?: string;
   /**
+   * 商品分类'普通商品','药浴','闪送'
+   */
+  product_category?: string;
+  /**
    * 商品ID 	//用户ID
    */
   product_id: number;
@@ -1055,7 +1059,7 @@ export interface Miniprogram_product {
    */
   original_price: number;
   /**
-   * 商品分类
+   * 商品分类'普通商品','药浴','闪送'
    */
   product_category?: string;
   /**
@@ -1124,6 +1128,10 @@ export interface Miniprogram_order {
    */
   order_status?: string;
   product?: Miniprogram_product;
+  /**
+   * 商品分类
+   */
+  product_category?: string;
   /**
    * 商品ID
    */
@@ -2560,48 +2568,6 @@ export interface Response_pageresult {
   pageSize?: number;
   total?: number;
 }
-export interface Transformer_producttransformer {
-  /**
-   * id
-   */
-  id?: number;
-  /**
-   * 商品图片
-   */
-  image?: string;
-  /**
-   * 净含量
-   */
-  net_weight: string;
-  /**
-   * 产地
-   */
-  origin: string;
-  /**
-   * 原价
-   */
-  original_price: number;
-  /**
-   * 商品分类
-   */
-  product_category?: string;
-  /**
-   * 商品名称
-   */
-  product_name: string;
-  /**
-   * 销售数
-   */
-  sales_count?: number;
-  /**
-   * 售价
-   */
-  selling_price: number;
-  /**
-   * 保质期
-   */
-  shelfLife: string;
-}
 export interface Transformer_reservationstransformer {
   /**
    * 预约日期（yyyy-mm-dd）
@@ -3120,32 +3086,26 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     // id
-       *     id?: number
-       *     // 商品图片
-       *     image?: string
-       *     // 净含量
-       *     net_weight: string
-       *     // 产地
-       *     origin: string
-       *     // 原价
-       *     original_price: number
-       *     // 商品分类
-       *     product_category?: string
-       *     // 商品名称
-       *     product_name: string
-       *     // 销售数
-       *     sales_count?: number
-       *     // 售价
-       *     selling_price: number
-       *     // 保质期
-       *     shelfLife: string
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       id?: number
+       *       product_name?: string
+       *       net_weight?: string
+       *       shelfLife?: string
+       *       origin?: string
+       *       sales_count?: number
+       *       selling_price?: string
+       *       original_price?: string
+       *       product_category?: string
+       *       image?: string
+       *     }>
+       *     total?: number
+       *     page?: number
+       *     pageSize?: number
        *   }
        *   msg?: string
        * }
@@ -3153,8 +3113,25 @@ declare global {
        */
       get_api_product<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Transformer_producttransformer;
+          object & {
+            code?: number;
+            data?: {
+              list?: Array<{
+                id?: number;
+                product_name?: string;
+                net_weight?: string;
+                shelfLife?: string;
+                origin?: string;
+                sales_count?: number;
+                selling_price?: string;
+                original_price?: string;
+                product_category?: string;
+                image?: string;
+              }>;
+              total?: number;
+              page?: number;
+              pageSize?: number;
+            };
             msg?: string;
           }
         > & {
@@ -3188,8 +3165,25 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Transformer_producttransformer;
+        object & {
+          code?: number;
+          data?: {
+            list?: Array<{
+              id?: number;
+              product_name?: string;
+              net_weight?: string;
+              shelfLife?: string;
+              origin?: string;
+              sales_count?: number;
+              selling_price?: string;
+              original_price?: string;
+              product_category?: string;
+              image?: string;
+            }>;
+            total?: number;
+            page?: number;
+            pageSize?: number;
+          };
           msg?: string;
         },
         'general.get_api_product',
@@ -4994,6 +4988,8 @@ declare global {
        *   delivery_address: string
        *   // 配送备注
        *   delivery_note?: string
+       *   // 商品分类'普通商品','药浴','闪送'
+       *   product_category?: string
        *   // 商品ID 	//用户ID
        *   product_id: number
        *   // 收货人姓名
@@ -14164,7 +14160,7 @@ declare global {
        *     origin: string
        *     // 原价
        *     original_price: number
-       *     // 商品分类
+       *     // 商品分类'普通商品','药浴','闪送'
        *     product_category?: string
        *     // 商品详情
        *     product_details?: string
@@ -14180,6 +14176,8 @@ declare global {
        *     updatedAt?: string
        *     updatedBy?: number
        *   }
+       *   // 商品分类
+       *   product_category?: string
        *   // 商品ID
        *   product_id?: number
        *   // 收货人姓名
@@ -14271,7 +14269,7 @@ declare global {
        *     origin: string
        *     // 原价
        *     original_price: number
-       *     // 商品分类
+       *     // 商品分类'普通商品','药浴','闪送'
        *     product_category?: string
        *     // 商品详情
        *     product_details?: string
@@ -14287,6 +14285,8 @@ declare global {
        *     updatedAt?: string
        *     updatedBy?: number
        *   }
+       *   // 商品分类
+       *   product_category?: string
        *   // 商品ID
        *   product_id?: number
        *   // 收货人姓名
@@ -14428,7 +14428,7 @@ declare global {
        *       origin: string
        *       // 原价
        *       original_price: number
-       *       // 商品分类
+       *       // 商品分类'普通商品','药浴','闪送'
        *       product_category?: string
        *       // 商品详情
        *       product_details?: string
@@ -14444,6 +14444,8 @@ declare global {
        *       updatedAt?: string
        *       updatedBy?: number
        *     }
+       *     // 商品分类
+       *     product_category?: string
        *     // 商品ID
        *     product_id?: number
        *     // 收货人姓名
@@ -14667,7 +14669,7 @@ declare global {
        *     origin: string
        *     // 原价
        *     original_price: number
-       *     // 商品分类
+       *     // 商品分类'普通商品','药浴','闪送'
        *     product_category?: string
        *     // 商品详情
        *     product_details?: string
@@ -14683,6 +14685,8 @@ declare global {
        *     updatedAt?: string
        *     updatedBy?: number
        *   }
+       *   // 商品分类
+       *   product_category?: string
        *   // 商品ID
        *   product_id?: number
        *   // 收货人姓名
@@ -14755,7 +14759,7 @@ declare global {
        *   origin: string
        *   // 原价
        *   original_price: number
-       *   // 商品分类
+       *   // 商品分类'普通商品','药浴','闪送'
        *   product_category?: string
        *   // 商品详情
        *   product_details?: string
@@ -14829,7 +14833,7 @@ declare global {
        *   origin: string
        *   // 原价
        *   original_price: number
-       *   // 商品分类
+       *   // 商品分类'普通商品','药浴','闪送'
        *   product_category?: string
        *   // 商品详情
        *   product_details?: string
@@ -14953,7 +14957,7 @@ declare global {
        *     origin: string
        *     // 原价
        *     original_price: number
-       *     // 商品分类
+       *     // 商品分类'普通商品','药浴','闪送'
        *     product_category?: string
        *     // 商品详情
        *     product_details?: string
@@ -15159,7 +15163,7 @@ declare global {
        *   origin: string
        *   // 原价
        *   original_price: number
-       *   // 商品分类
+       *   // 商品分类'普通商品','药浴','闪送'
        *   product_category?: string
        *   // 商品详情
        *   product_details?: string

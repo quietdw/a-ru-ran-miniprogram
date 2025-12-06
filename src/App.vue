@@ -10,6 +10,14 @@ page{
 
   --wot-button-primary-bg-color: var(--primary-color);
   --wot-button-medium-radius: 16rpx;
+
+  .wd-loadmore {
+
+    --wot-loadmore-height:48rpx;
+    --wot-loading-size:24rpx;
+    --wot-divider-margin:0
+  }
+
 }
 
 .page-wraper {

@@ -1,16 +1,24 @@
 <script setup lang="ts">
-const props = defineProps({
-  item: {
-    type: Object,
-    default: () => ({}),
-  },
+type ProductListResponse = Awaited<ReturnType<typeof Apis.general.get_api_product>>
+type ProductItem = NonNullable<NonNullable<ProductListResponse['data']>['list']>[number]
+
+const props = withDefaults(defineProps<{
+  item: ProductItem
+}>(), {
+  item: () => ({}),
 })
 
 const { show: showToast } = useGlobalToast()
 
 const priceArray = computed(() => {
-  console.log(props.item.price?.toString())
-  return props.item.price?.toString().split('.')
+  return props.item.selling_price?.toString().split('.') || []
+})
+
+const salesCount = computed(() => {
+  if (props.item.sales_count && props.item.sales_count < 10000) {
+    return props.item.sales_count
+  }
+  return `${(props.item.sales_count || 0 / 10000).toFixed(1)}万+`
 })
 
 function handleBuy() {
@@ -31,18 +39,18 @@ export default {
 <template>
   <view class="product-item arr-card flex gap-20rpx bg-#fff">
     <view class="h-200rpx w-200rpx overflow-hidden rounded-16rpx bg-#f5f5f5">
-      <image class="h-full w-full" mode="center" :src="getFileUrl('/img/test-product.svg')" />
+      <image class="h-full w-full" mode="center" :src="getFileUrl(item.image || '')" />
     </view>
     <view class="min-w-0 flex flex-1 flex-col">
       <!-- 名称 -->
       <view class="name t-s">
-        {{ item.name }}
+        {{ item.product_name }}
       </view>
       <!-- 属性 -->
       <view class="attributes t-n mt-20rpx flex items-center gap-24rpx">
         <view class="flex flex-col gap-4rpx text-center">
           <view class="t-xs">
-            500g
+            {{ item.net_weight }}g
           </view>
           <view class="t-xs text-#666666">
             净含量
@@ -51,7 +59,7 @@ export default {
         <view class="divider" />
         <view class="flex flex-col gap-4rpx text-center">
           <view class="t-xs">
-            12个月
+            {{ item.shelfLife }}个月
           </view>
           <view class="t-xs text-#666666">
             保质期
@@ -61,7 +69,7 @@ export default {
 
         <view class="flex flex-col gap-4rpx text-center">
           <view class="t-xs">
-            内蒙古
+            {{ item.origin }}
           </view>
           <view class="t-xs text-#666666">
             产地
@@ -74,11 +82,11 @@ export default {
           <!-- 已售 -->
           <view class="flex gap-12rpx">
             <view class="t-xs">
-              已售 1万+
+              已售 {{ salesCount }}
             </view>
-            <view class="t-xs text-#FF5400">
+            <!-- <view class="t-xs text-#FF5400">
               本店热销榜第2名
-            </view>
+            </view> -->
           </view>
           <!-- 价格 -->
           <view class="price mt-16rpx min-w-0 flex flex-1 gap-8rpx">
@@ -86,7 +94,7 @@ export default {
               <view class="t-xs text-#FF4444">
                 ¥
               </view>
-              <view class="t-l text-#FF4444 font-bold">
+              <view class="t-l mt-0.25em text-#FF4444 font-bold leading-[38rpx]">
                 {{ priceArray[0] }}
               </view>
               <text v-if="priceArray[1]" class="t-xs text-#FF4444 font-bold">
@@ -95,7 +103,7 @@ export default {
             </view>
             <view class="original-price flex items-end gap-8rpx">
               <view class="t-xs text-#999">
-                ¥ {{ item.originalPrice }}
+                ¥ {{ item.original_price }}
               </view>
             </view>
           </view>

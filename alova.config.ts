@@ -235,6 +235,35 @@ export default <Config>{
             msg: '成功',
           })
         }
+
+        // get_api_product
+        if (apiDescriptor.operationId === 'get_api_product') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              list: [
+                {
+                  id: 1,
+                  product_name: '测试商品',
+                  net_weight: '100',
+                  shelfLife: '12',
+                  origin: '杭州',
+                  sales_count: 1000,
+                  selling_price: '10',
+                  original_price: '100',
+                  product_category: '普通商品',
+                  image: 'https://t9.baidu.com/it/u=4009945415,82950995&fm=3035&app=3035&size=r2,1&q=75&n=0&g=3n&f=JPEG&fmt=auto&maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2',
+                },
+              ],
+              total: 1,
+              page: 0,
+              pageSize: 0,
+            },
+            msg: '获取成功',
+          })
+        }
+
+        // console.log(apiDescriptor)
         return apiDescriptor
       },
     },
