@@ -40,8 +40,9 @@ const backgroundColor = computed(() => {
 
 const tabCurrentIndex = ref(0)
 const tabs = ref([
-  { text: '全部', value: 0 },
-  { text: '闪送', value: 1 },
+  { text: '普通商品', value: '普通商品' },
+  { text: '药浴', value: '药浴' },
+  { text: '闪送', value: '闪送' },
 ])
 
 function handleSelectAddress() {
@@ -101,7 +102,7 @@ function handleSelectAddress() {
                   </view>
                 </view>
 
-                <product-list :value="item.value" />
+                <product-list :type="item.value" />
               </view>
             </wd-tab>
           </block>

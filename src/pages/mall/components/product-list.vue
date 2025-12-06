@@ -3,23 +3,12 @@ import ProductItem from './product-item.vue'
 import Empty from '@/components/common/empty/index.vue'
 import { getLoadMoreState, loadmoreOtp } from '@/utils/component.ts'
 
-defineProps({
-  value: {
-    type: Number,
-    default: 0,
+const props = defineProps({
+  type: {
+    type: String,
+    default: '',
   },
 })
-
-// const list = computed(() => {
-//   return Array.from({ length: 20 }, (_, index) => {
-//     return {
-//       name: `内蒙特产鲜牛肉，新鲜草原牛肉`,
-//       value: index + 1,
-//       price: 100.12,
-//       originalPrice: 120.56,
-//     }
-//   })
-// })
 
 // 使用 Alova 的 usePagination hook 管理产品列表请求 https://alova.js.org/zh-CN/tutorial/client/strategy/use-pagination/
 const {
@@ -46,7 +35,7 @@ const {
   // Method实例获取函数，接收page和pageSize参数
   (page, pageSize) => {
     return Apis.general.get_api_product({
-      params: { pageNum: page, pageSize },
+      params: { pageNum: page, pageSize, type: props.type },
     })
   },
   {
