@@ -85,4 +85,8 @@ button[plain] {
   font-size: 36rpx;
   line-height: 50rpx;
 }
+.t-xxl {
+  font-size: 40rpx;
+  line-height: 56rpx;
+}
 </style>

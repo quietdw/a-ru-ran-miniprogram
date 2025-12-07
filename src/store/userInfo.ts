@@ -50,5 +50,9 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.setToken('')
       this.setAddressInfo(null)
     },
+    async updateUserinfo() {
+      const infoRes = await Apis.general.get_api_wechatuser()
+      this.setUserinfo(infoRes.data || null)
+    },
   },
 })

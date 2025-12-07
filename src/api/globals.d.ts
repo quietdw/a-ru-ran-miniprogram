@@ -2856,22 +2856,22 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     // 交易金额
-       *     amount?: number
-       *     create_at?: string
-       *     id?: number
-       *     // 备注
-       *     remark?: string
-       *     // 交易类型
-       *     transaction_type: string
-       *     // 用户卡包余额
-       *     wallet_balance?: number
+       *     // [items] start
+       *     // [items] end
+       *     list?: Array<{
+       *       amount?: number
+       *       create_at?: string
+       *       id?: number
+       *       remark?: string
+       *       transaction_type?: string
+       *       wallet_balance?: number
+       *     }>
+       *     total?: number
+       *     page?: number
+       *     pageSize?: number
        *   }
        *   msg?: string
        * }
@@ -2879,8 +2879,21 @@ declare global {
        */
       get_api_consumption<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Transformer_consumptiontransformer;
+          object & {
+            code?: number;
+            data?: {
+              list?: Array<{
+                amount?: number;
+                create_at?: string;
+                id?: number;
+                remark?: string;
+                transaction_type?: string;
+                wallet_balance?: number;
+              }>;
+              total?: number;
+              page?: number;
+              pageSize?: number;
+            };
             msg?: string;
           }
         > & {
@@ -2910,8 +2923,21 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Transformer_consumptiontransformer;
+        object & {
+          code?: number;
+          data?: {
+            list?: Array<{
+              amount?: number;
+              create_at?: string;
+              id?: number;
+              remark?: string;
+              transaction_type?: string;
+              wallet_balance?: number;
+            }>;
+            total?: number;
+            page?: number;
+            pageSize?: number;
+          };
           msg?: string;
         },
         'general.get_api_consumption',

@@ -15,6 +15,7 @@ function generateRoutes() {
       routes.push(...subRoutes)
     })
   }
+  console.log(routes)
   return routes
 }
 

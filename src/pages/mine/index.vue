@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { onShow } from '@dcloudio/uni-app'
 import UserInfo from './components/user-info.vue'
 import HealthMonitoring from './components/health-monitoring.vue'
 import MemberInfo from './components/member-info.vue'
 import PageBg from '@/components/common/page-bg.vue'
 import { getFileUrl } from '@/utils/file'
+import { useUserInfoStore } from '@/store/userInfo'
 
 definePage({
   name: 'mine',
@@ -13,6 +15,10 @@ definePage({
     navigationStyle: 'custom',
 
   },
+})
+
+onShow(() => {
+  useUserInfoStore().updateUserinfo()
 })
 </script>
 

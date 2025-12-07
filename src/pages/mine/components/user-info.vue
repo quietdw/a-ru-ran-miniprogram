@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { CommonUtil } from 'wot-design-uni'
 import { storeToRefs } from 'pinia'
+import { useUserInfoStore } from '@/store/userInfo'
 
 const { addUnit } = CommonUtil
 
 const menuButtonInfo = uni.getMenuButtonBoundingClientRect?.()
 const menuWidth = addUnit(menuButtonInfo?.width || 0)
+
+const { userinfo } = storeToRefs(useUserInfoStore())
 </script>
 
 <script lang="ts">
@@ -22,7 +25,7 @@ export default {
     <view class="user-info-avatar">
       <image
         :src="
-          getFileUrl('/img/default-avatar.png')
+          userinfo?.avatar_url || getFileUrl('/img/default-avatar.png')
         "
         class="h-full w-full"
         mode="aspectFill"
@@ -31,10 +34,10 @@ export default {
     <view class="user-info min-w-0 flex flex-1 flex-col">
       <view class="user-info-name flex flex-col justify-start">
         <view class="t-l text-left font-bold">
-          游客
+          {{ userinfo?.nick_name }}
         </view>
         <view class="t-s text-left">
-          13333333333
+          {{ userinfo?.mobile }}
         </view>
       </view>
       <view class="user-info-actions" />

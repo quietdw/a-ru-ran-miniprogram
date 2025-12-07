@@ -49,6 +49,15 @@
       }
     },
     {
+      "path": "pages/member/consumption-list",
+      "type": "page",
+      "name": "consumption-list",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "消费记录"
+      }
+    },
+    {
       "path": "pages/mine/index",
       "type": "page",
       "name": "mine",

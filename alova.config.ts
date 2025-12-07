@@ -132,43 +132,6 @@ export default <Config>{
 
         // Fix login API response type - backend Swagger incorrectly defines it as string
         // but it actually returns a unified response structure like other APIs
-        if (apiDescriptor.operationId === 'post_api_wechatuser_login') {
-          apiDescriptor.responses = createResponseFromData({
-            code: 0,
-            data: {
-              token: 'string_token',
-              userinfo: {
-                ID: 6,
-                CreatedAt: '2025-12-03T18:50:58.559+08:00',
-                UpdatedAt: '2025-12-03T19:00:49.888+08:00',
-                open_id: 'of2xy1_fjEzbL0nsZ9qWjFeDr-Cg',
-                nick_name: null,
-                mobile: null,
-                real_name: null,
-                id_card: null,
-                id_card_front: null,
-                id_car_back: null,
-                default_device_id: 0,
-                encryption_key: null,
-                session_key: '+2EkEWcs70Ih/8t9Cirttg==',
-                avatar_url: '',
-                gender: 0,
-                status: '1',
-                vip_card: null,
-                vip_level: 0,
-                points: 0,
-                wallet_balance: '0',
-                total_recharge: '0',
-                total_consumption: '0',
-                bath_count: 0,
-                CreatedBy: 0,
-                UpdatedBy: 0,
-                DeletedBy: 0,
-              },
-            },
-            msg: '成功',
-          })
-        }
 
         // Fix floors API
         if (apiDescriptor.operationId === 'get_api_floors') {
@@ -292,6 +255,29 @@ export default <Config>{
           apiDescriptor.responses = createResponseFromData(
             { code: 0, data: { list: [{ id: 12, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997257908554829824', created_at: '2025-12-06 18:52:47', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 13, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997258661046521856', created_at: '2025-12-06 18:55:46', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 14, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997260313413554176', created_at: '2025-12-06 19:02:20', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 15, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997260367679459328', created_at: '2025-12-06 19:02:33', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 16, product_id: 1, user_id: 6, order_amount: '10', user_phone: '020-81167888', delivery_address: '广东省 广州市 海珠区 新港中路397号', receiver_name: '张三', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997260579391148032', created_at: '2025-12-06 19:03:24', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 17, product_id: 1, user_id: 6, order_amount: '10', user_phone: '', delivery_address: '', receiver_name: '', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997263560605962240', created_at: '2025-12-06 19:15:14', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 18, product_id: 1, user_id: 6, order_amount: '10', user_phone: '', delivery_address: '', receiver_name: '', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997265787781386240', created_at: '2025-12-06 19:24:05', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 19, product_id: 1, user_id: 6, order_amount: '10', user_phone: '', delivery_address: '', receiver_name: '', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997265800049725440', created_at: '2025-12-06 19:24:08', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 20, product_id: 1, user_id: 6, order_amount: '10', user_phone: '', delivery_address: '', receiver_name: '', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997265831658000384', created_at: '2025-12-06 19:24:16', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }, { id: 21, product_id: 1, user_id: 6, order_amount: '10', user_phone: '', delivery_address: '', receiver_name: '', expected_delivery_time: null, actual_delivery_time: null, delivery_note: null, order_status: '待支付', order_number: '1997291643392233472', created_at: '2025-12-06 21:06:50', product: { id: 1, product_name: '测试商品', net_weight: '100', shelfLife: '12', origin: '杭州', sales_count: 1000, selling_price: '10', original_price: '100', product_category: '普通商品', image: 'https://t9.baidu.com/it/u=4009945415,82950995\u0026fm=3035\u0026app=3035\u0026size=r2,1\u0026q=75\u0026n=0\u0026g=3n\u0026f=JPEG\u0026fmt=auto\u0026maxorilen2heic=2000000?s=F0082FF000052EFC26B0AF140300C0E2' } }], total: 11, page: 0, pageSize: 10 }, msg: '获取成功' },
           )
+        }
+
+        // get_api_consumption
+        if (apiDescriptor.operationId === 'get_api_consumption') {
+          apiDescriptor.responses = createResponseFromData({
+            code: 0,
+            data: {
+              list: [
+                {
+                  amount: 0,
+                  create_at: 'string',
+                  id: 0,
+                  remark: 'string',
+                  transaction_type: 'string',
+                  wallet_balance: 0,
+                },
+              ],
+              total: 2,
+              page: 0,
+              pageSize: 0,
+            },
+            msg: 'string',
+          })
         }
 
         // console.log(apiDescriptor)

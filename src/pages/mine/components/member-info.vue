@@ -1,4 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import router from '@/router'
+
+const { userinfo } = storeToRefs(useUserInfoStore())
+
+// 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+const vipName = computed(() => {
+  const vipNameMap = {
+    0: '无会员',
+    1: '体验会员',
+    2: 'VIP会员',
+    3: '银卡会员',
+    4: '金卡会员',
+    5: '钻石会员',
+  }
+  return vipNameMap[userinfo?.value?.vip_level as keyof typeof vipNameMap] || '无会员'
+})
+
+function toConsumptionList() {
+  router.push({
+    name: 'consumption-list',
+  })
+}
+</script>
 
 <script lang="ts">
 // 最外层page不能有
@@ -22,22 +45,51 @@ export default {
         <wd-icon name="arrow-right" size="28rpx" color="#784427" custom-class="ml-20rpx" />
       </view>
     </view>
-    <view class="t-n mt-8rpx text-#94684E">
-      充值或累积消费3千入门
+    <view v-if="!userinfo?.vip_level">
+      <view class="t-n mt-8rpx text-#94684E">
+        充值或累积消费3千入门
+      </view>
+      <view class="mt-36rpx flex justify-between gap-46rpx px-20rpx">
+        <view class="t-xl text-#662B0B">
+          全场95折
+        </view>
+        <view class="t-xl text-#E93E3E">
+          药浴体验1次
+        </view>
+        <view class="t-xl text-#E93E3E">
+          康养咨询
+        </view>
+      </view>
+      <view class="t-s mt-32rpx text-#662B0BE0 font-bold">
+        远程问诊，节令日小礼品赠送，有机火锅同城送餐
+      </view>
     </view>
-    <view class="mt-36rpx flex justify-between gap-46rpx px-20rpx">
-      <view class="t-xl text-#662B0B">
-        全场95折
+    <view v-else>
+      <view>{{ vipName }}</view>
+      <view class="mt-36rpx flex justify-between gap-46rpx px-20rpx">
+        <view class="flex items-center gap-10rpx">
+          <view class="t-n text-#662B0B">
+            余额：
+          </view>
+          <view class="t-xxl text-#E93E3E">
+            {{ userinfo?.wallet_balance }}
+          </view>
+        </view>
+        <view class="t-xl text-#662B0B">
+          全场95折
+        </view>
+        <view class="t-xl text-#E93E3E">
+          康养咨询
+        </view>
       </view>
-      <view class="t-xl text-#E93E3E">
-        药浴体验1次
+      <view class="mt-36rpx flex justify-between gap-46rpx font-bold">
+        <view class="t-s text-#662B0BE0">
+          升级会员卡等级，享更多优惠
+        </view>
+        <view class="t-s text-#662B0BE0 underline" @click="toConsumptionList">
+          消费记录
+        </view>
       </view>
-      <view class="t-xl text-#E93E3E">
-        康养咨询
-      </view>
-    </view>
-    <view class="t-s mt-32rpx text-#662B0BE0 font-bold">
-      远程问诊，节令日小礼品赠送，有机火锅同城送餐
     </view>
   </view>
 </template>

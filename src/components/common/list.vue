@@ -77,6 +77,14 @@ onReachBottom(() => {
   handleReachBottom()
 })
 
+// 下拉刷新
+onPullDownRefresh(() => {
+  refresh()
+  setTimeout(() => {
+    uni.stopPullDownRefresh()
+  }, 500)
+})
+
 defineExpose({
   refresh,
   remove,
