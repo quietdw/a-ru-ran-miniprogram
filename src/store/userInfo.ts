@@ -50,9 +50,22 @@ export const useUserInfoStore = defineStore('userInfo', {
       this.setToken('')
       this.setAddressInfo(null)
     },
+    // 更新本地用户信息
     async updateUserinfo() {
       const infoRes = await Apis.general.get_api_wechatuser()
       this.setUserinfo(infoRes.data || null)
+    },
+    // 更新服务器用户信息
+    async updateOriginUserinfo(data: Partial<UserInfoItem>) {
+      const params = {
+        ...this.userinfo,
+        ...data,
+      }
+      const infoRes = await Apis.general.post_api_wechatuser({
+        data: params,
+      })
+      console.log(infoRes)
+      // this.setUserinfo(infoRes.data || null)
     },
   },
 })

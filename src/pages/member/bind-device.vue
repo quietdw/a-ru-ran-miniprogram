@@ -23,6 +23,18 @@ function handleSubmit() {
       })
 
       globalToast.success({ msg: res?.msg || '绑定设备成功' })
+
+      const deviceId = res.data?.id as number
+
+      console.log(res)
+      await useUserInfoStore().updateOriginUserinfo({
+        default_device_id: deviceId,
+      })
+
+      useUserInfoStore().setUserinfo({
+        ...useUserInfoStore().userinfo,
+        default_device_id: deviceId,
+      })
       router.back()
     }
   })
