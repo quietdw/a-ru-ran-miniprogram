@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useUserInfoStore } from '@/store/userInfo'
 import { useGlobalToast } from '@/composables/useGlobalToast'
+import router from '@/router'
 
 type ProductListResponse = Awaited<ReturnType<typeof Apis.general.get_api_product>>
 type ProductItem = NonNullable<NonNullable<ProductListResponse['data']>['list']>[number]
@@ -13,7 +14,7 @@ const props = withDefaults(defineProps<{
   showBuy: true,
 })
 
-const { show: showToast } = useGlobalToast()
+const globalToast = useGlobalToast()
 const { address, addressInfo } = storeToRefs(useUserInfoStore())
 const globalLoading = useGlobalLoading()
 
@@ -56,7 +57,24 @@ async function handleBuy() {
       },
     })
 
-    console.log(payRes, '222')
+    const payInfo = payRes.data || {}
+
+    wx.requestPayment({
+      timeStamp: payInfo?.timeStamp || '',
+      nonceStr: payInfo?.nonceStr || '',
+      package: payInfo?.package || '',
+      signType: payInfo?.signType as 'MD5' | 'HMAC-SHA256' | 'RSA' | undefined,
+      paySign: payInfo?.paySign || '',
+      success: () => {
+        globalLoading.close()
+        globalToast.success('支付成功')
+        router.push({ name: 'order-list' })
+      },
+      fail: () => {
+        globalLoading.close()
+        globalToast.error('支付失败')
+      },
+    })
   }
   catch (error) {
     globalLoading.close()

@@ -5555,16 +5555,15 @@ declare global {
        *
        * **Response**
        * ```ts
-       * type Response = {
+       * type Response = object & {
        *   code?: number
-       *   data?: null
-       *   msg?: string
-       * } & {
        *   data?: {
-       *     list?: null
-       *     page?: number
-       *     pageSize?: number
-       *     total?: number
+       *     appId?: string
+       *     nonceStr?: string
+       *     package?: string
+       *     paySign?: string
+       *     signType?: string
+       *     timeStamp?: string
        *   }
        *   msg?: string
        * }
@@ -5572,8 +5571,16 @@ declare global {
        */
       post_api_order_pay_id<
         Config extends Alova2MethodConfig<
-          Response_response & {
-            data?: Response_pageresult;
+          object & {
+            code?: number;
+            data?: {
+              appId?: string;
+              nonceStr?: string;
+              package?: string;
+              paySign?: string;
+              signType?: string;
+              timeStamp?: string;
+            };
             msg?: string;
           }
         > & {
@@ -5587,8 +5594,16 @@ declare global {
       >(
         config: Config
       ): Alova2Method<
-        Response_response & {
-          data?: Response_pageresult;
+        object & {
+          code?: number;
+          data?: {
+            appId?: string;
+            nonceStr?: string;
+            package?: string;
+            paySign?: string;
+            signType?: string;
+            timeStamp?: string;
+          };
           msg?: string;
         },
         'order.post_api_order_pay_id',

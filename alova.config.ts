@@ -74,6 +74,14 @@ function createResponseFromData(responseExample: any) {
   }
 }
 
+function successResponse(data: any) {
+  return {
+    code: 0,
+    data,
+    msg: '成功',
+  }
+}
+
 export default <Config>{
   generator: [
     {
@@ -280,6 +288,17 @@ export default <Config>{
           })
         }
 
+        // post_api_order_pay_id
+        if (apiDescriptor.operationId === 'post_api_order_pay_id') {
+          apiDescriptor.responses = createResponseFromData(successResponse({
+            appId: 'wx50c590043808c2ce',
+            nonceStr: 'RIEbezGwKvafl3UnOuf7CxnXazLHOcxg',
+            package: 'prepay id=wx07120030838433d90fad30695906680000',
+            paySign: 'CRlxpZZfDZRLeh5+gVLG35NyjAyeFkK0pXb1GHrWWKxLA1+H5V1G801',
+            signType: 'RSA',
+            timeStamp: '1765080031',
+          }))
+        }
         // console.log(apiDescriptor)
         return apiDescriptor
       },

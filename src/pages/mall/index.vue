@@ -75,7 +75,7 @@ function handleSelectAddress() {
           :offset-top="offsetTop"
           custom-class="mall-tab"
         >
-          <block v-for="item in tabs" :key="item.value">
+          <block v-for="(item, index) in tabs" :key="item.value">
             <wd-tab :title="item.text">
               <view class="content flex flex-col gap-24rpx" :style="{ width: `100vw` }">
                 <view class="address px-20rpx">
@@ -94,7 +94,7 @@ function handleSelectAddress() {
                   </view>
                 </view>
 
-                <product-list :type="item.value" />
+                <product-list v-if="tabCurrentIndex === index" :type="item.value" />
               </view>
             </wd-tab>
           </block>
