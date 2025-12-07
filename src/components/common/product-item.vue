@@ -30,6 +30,10 @@ const salesCount = computed(() => {
 })
 
 async function handleBuy() {
+  if (!address.value) {
+    globalToast.warning('请先选择收货地址')
+    return
+  }
   globalLoading.loading('正在生成订单...')
   try {
     const addressInfo = useUserInfoStore().addressInfo
