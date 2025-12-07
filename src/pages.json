@@ -49,12 +49,30 @@
       }
     },
     {
+      "path": "pages/member/bind-device",
+      "type": "page",
+      "name": "bind-device",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "绑定设备"
+      }
+    },
+    {
       "path": "pages/member/consumption-list",
       "type": "page",
       "name": "consumption-list",
       "layout": "default",
       "style": {
         "navigationBarTitleText": "消费记录"
+      }
+    },
+    {
+      "path": "pages/member/profile",
+      "type": "page",
+      "name": "member-profile",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "会员档案"
       }
     },
     {

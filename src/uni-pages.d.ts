@@ -9,7 +9,9 @@ type _LocationUrl =
   "/pages/consult/index" |
   "/pages/login/index" |
   "/pages/mall/index" |
+  "/pages/member/bind-device" |
   "/pages/member/consumption-list" |
+  "/pages/member/profile" |
   "/pages/mine/index" |
   "/pages/order/list";
 

@@ -33,16 +33,18 @@ async function handleLogin(event1: {
       userInfoStore.setToken(loginRes?.data?.token || '')
       userInfoStore.setUserinfo(loginRes?.data?.userinfo || null)
 
-      // 更新手机号
-      await Apis.general.post_api_wechatuser_getphone({
-        data: {
-          encrypted_data: event1.encryptedData,
-          iv: event1.iv,
-        },
-      })
-      // 获取用户信息
-      const userInfoRes = await Apis.general.get_api_wechatuser()
-      userInfoStore.setUserinfo(userInfoRes?.data || null)
+      if (!loginRes?.data?.userinfo?.mobile) {
+        // 更新手机号
+        await Apis.general.post_api_wechatuser_getphone({
+          data: {
+            encrypted_data: event1.encryptedData,
+            iv: event1.iv,
+          },
+        })
+        // 获取用户信息
+        const userInfoRes = await Apis.general.get_api_wechatuser()
+        userInfoStore.setUserinfo(userInfoRes?.data || null)
+      }
 
       router.back()
 

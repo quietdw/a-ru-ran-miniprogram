@@ -11,7 +11,7 @@ const props = defineProps({
     type: Function,
     default: () => {},
   },
-  active: {
+  showLoadmore: {
     type: Boolean,
     default: true,
   },
@@ -103,11 +103,13 @@ export default {
 
 <template>
   <view class="list min-h-100vh flex flex-col gap-28rpx px-24rpx">
+    <slot name="header" :data="data" />
     <slot :data="data" />
     <template v-if="!loading && !data?.length ">
       <Empty />
     </template>
     <wd-loadmore
+      v-if="showLoadmore"
       :state="getLoadMoreState(!!error, loading, isLastPage)"
       v-bind="loadmoreOtp()"
       @reload="refresh"

@@ -17,6 +17,18 @@
  * **Do not edit the file manually.**
  */
 export default {
+  'CaseManagement.post_casemanagement_createcasemanagement': ['POST', '/Casemanagement/createCaseManagement'],
+  'CaseManagement.delete_casemanagement_deletecasemanagement': ['DELETE', '/Casemanagement/deleteCaseManagement'],
+  'CaseManagement.delete_casemanagement_deletecasemanagementbyids': [
+    'DELETE',
+    '/Casemanagement/deleteCaseManagementByIds'
+  ],
+  'CaseManagement.get_casemanagement_findcasemanagement': ['GET', '/Casemanagement/findCaseManagement'],
+  'CaseManagement.get_casemanagement_getcasemanagementlist': ['GET', '/Casemanagement/getCaseManagementList'],
+  'CaseManagement.get_casemanagement_getcasemanagementpublic': ['GET', '/Casemanagement/getCaseManagementPublic'],
+  'CaseManagement.put_casemanagement_updatecasemanagement': ['PUT', '/Casemanagement/updateCaseManagement'],
+  'general.get_api_case_management': ['GET', '/api/case_management'],
+  'general.get_api_case_management_id': ['GET', '/api/case_management/{id}'],
   'general.get_api_consumption': ['GET', '/api/consumption'],
   'general.get_api_consumption_id': ['GET', '/api/consumption/{id}'],
   'SysApi.post_api_createapi': ['POST', '/api/createApi'],

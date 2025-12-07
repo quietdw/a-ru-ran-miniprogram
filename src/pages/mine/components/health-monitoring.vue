@@ -1,5 +1,31 @@
 <script setup lang="ts">
+import { useWatcher } from 'alova/client'
 import { getFileUrl } from '@/utils/file'
+import Apis from '@/api'
+import router from '@/router'
+
+const { userinfo } = storeToRefs(useUserInfoStore())
+
+const deviceId = computed(() => userinfo.value?.default_device_id || 0)
+const { data, loading, error, send } = useWatcher(
+  () => Apis.device.get_api_device_id(
+    {
+      pathParams: {
+        id: deviceId.value,
+      },
+    },
+  ),
+  [deviceId],
+  {
+    immediate: true,
+    middleware: (c, next) => {
+      if (!deviceId.value) {
+        return
+      }
+      next()
+    },
+  },
+)
 </script>
 
 <script lang="ts">
@@ -17,7 +43,7 @@ export default {
     <view class="t-n font-bold">
       会员健康监测
     </view>
-    <view class="arr-card bg-#fff">
+    <view v-if="deviceId" class="arr-card bg-#fff">
       <view class="flex items-center justify-between">
         我的设备
         <wd-button size="small" custom-class="!h-40rpx rounded-16rpx !bg-#EBEBEB">
@@ -42,6 +68,9 @@ export default {
           </wd-button>
         </view>
       </view>
+    </view>
+    <view v-else class="t-n arr-card bg-#fff text-center text-#999" @click="router.push({ name: 'bind-device' })">
+      + 绑定设备
     </view>
   </view>
 </template>

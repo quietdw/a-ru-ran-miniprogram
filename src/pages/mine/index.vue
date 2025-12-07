@@ -6,6 +6,7 @@ import MemberInfo from './components/member-info.vue'
 import PageBg from '@/components/common/page-bg.vue'
 import { getFileUrl } from '@/utils/file'
 import { useUserInfoStore } from '@/store/userInfo'
+import router from '@/router'
 
 definePage({
   name: 'mine',
@@ -20,6 +21,11 @@ definePage({
 onShow(() => {
   useUserInfoStore().updateUserinfo()
 })
+
+function handleLogout() {
+  useUserInfoStore().logout()
+  router.push({ name: 'login' })
+}
 </script>
 
 <template>
@@ -32,22 +38,24 @@ onShow(() => {
         </template>
       </wd-navbar>
     </view>
-    <view class="flex flex-col gap-24rpx px-28rpx pt-12rpx">
+    <view class="relative flex flex-col gap-24rpx px-28rpx pt-12rpx">
       <HealthMonitoring />
       <!-- 入口图片 -->
       <view class="flex items-center justify-center gap-24rpx">
-        <view class="entrance-left min-w-0">
+        <view class="entrance-left min-w-0" title="会员档案" @click="router.push({ name: 'member-profile' })">
           <image :src="getFileUrl('/img/entrance2.png')" mode="widthFix" class="w-full" />
         </view>
-        <view class="entrance-right min-w-0">
-          <image :src="getFileUrl('/img/entrance1.png')" mode="widthFix" class="w-full" />
+        <view class="entrance-right min-w-0" title="阿如然">
+          <button open-type="contact" hover-class="none" plain class="flex !m-0 !h-auto !w-full !bg-transparent !p-0">
+            <image :src="getFileUrl('/img/entrance1.png')" mode="widthFix" class="w-full" />
+          </button>
         </view>
       </view>
 
       <!-- 会员 -->
       <MemberInfo />
 
-      <wd-button type="primary" block custom-class="!bg-#fff  !rounded-16rpx !h-106rpx">
+      <wd-button type="primary" block custom-class="!bg-#fff  !rounded-16rpx !h-106rpx" @click="handleLogout">
         <text class="t-xl text-#333">
           退出登录
         </text>

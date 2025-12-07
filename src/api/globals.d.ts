@@ -89,6 +89,134 @@ type Alova2Method<
       >
     : never;
 
+export interface Miniprogram_wechatuser {
+  /**
+   * 主键ID
+   */
+  ID?: number;
+  /**
+   * 头像URL
+   */
+  avatar_url?: string;
+  bath_count?: number;
+  /**
+   * 创建时间
+   */
+  createdAt?: string;
+  createdBy?: number;
+  /**
+   * 默认设备ID
+   */
+  default_device_id?: number;
+  deletedBy?: number;
+  /**
+   * 加解密密钥
+   */
+  encryption_key?: string;
+  /**
+   * 性别：0-未知，1-男，2-女
+   */
+  gender: number;
+  /**
+   * 身份证反面照URL
+   */
+  id_car_back?: string;
+  /**
+   * 身份证号
+   */
+  id_card: string;
+  /**
+   * 身份证正面照URL
+   */
+  id_card_front: string;
+  /**
+   * 手机号
+   */
+  mobile: string;
+  /**
+   * 用户昵称
+   */
+  nick_name: string;
+  /**
+   * 微信openid
+   */
+  open_id?: string;
+  /**
+   * 用户积分
+   */
+  points?: number;
+  /**
+   * 真实姓名
+   */
+  real_name: string;
+  /**
+   * 微信会话密钥
+   */
+  session_key?: string;
+  /**
+   * 状态：0-正常，1-禁用
+   */
+  status: string;
+  /**
+   * 累计消费
+   */
+  total_consumption?: number;
+  /**
+   * 累计充值
+   */
+  total_recharge?: number;
+  /**
+   * 更新时间
+   */
+  updatedAt?: string;
+  updatedBy?: number;
+  /**
+   * 会员卡id
+   */
+  vip_card?: string;
+  /**
+   * 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+   */
+  vip_level?: number;
+  /**
+   * 用户卡包余额
+   */
+  wallet_balance?: number;
+}
+export interface Miniprogram_casemanagement {
+  /**
+   * 主键ID
+   */
+  ID?: number;
+  /**
+   * 病例详情
+   */
+  case_description?: string;
+  /**
+   * 病例
+   */
+  case_name?: string;
+  /**
+   * 创建时间
+   */
+  createdAt?: string;
+  createdBy?: number;
+  deletedBy?: number;
+  /**
+   * 首次治疗效果
+   */
+  first_treatment_effect?: string;
+  /**
+   * 更新时间
+   */
+  updatedAt?: string;
+  updatedBy?: number;
+  /**
+   * 用户id
+   */
+  user_id?: number;
+  userinfo?: Miniprogram_wechatuser;
+}
 export interface System_sysapi {
   /**
    * 主键ID
@@ -2442,100 +2570,6 @@ export interface Request_setuserauth {
    */
   authorityId?: number;
 }
-export interface Miniprogram_wechatuser {
-  /**
-   * 主键ID
-   */
-  ID?: number;
-  /**
-   * 头像URL
-   */
-  avatar_url?: string;
-  bath_count?: number;
-  /**
-   * 创建时间
-   */
-  createdAt?: string;
-  createdBy?: number;
-  /**
-   * 默认设备ID
-   */
-  default_device_id?: number;
-  deletedBy?: number;
-  /**
-   * 加解密密钥
-   */
-  encryption_key?: string;
-  /**
-   * 性别：0-未知，1-男，2-女
-   */
-  gender: number;
-  /**
-   * 身份证反面照URL
-   */
-  id_car_back?: string;
-  /**
-   * 身份证号
-   */
-  id_card: string;
-  /**
-   * 身份证正面照URL
-   */
-  id_card_front: string;
-  /**
-   * 手机号
-   */
-  mobile: string;
-  /**
-   * 用户昵称
-   */
-  nick_name: string;
-  /**
-   * 微信openid
-   */
-  open_id?: string;
-  /**
-   * 用户积分
-   */
-  points?: number;
-  /**
-   * 真实姓名
-   */
-  real_name: string;
-  /**
-   * 微信会话密钥
-   */
-  session_key?: string;
-  /**
-   * 状态：0-正常，1-禁用
-   */
-  status: string;
-  /**
-   * 累计消费
-   */
-  total_consumption?: number;
-  /**
-   * 累计充值
-   */
-  total_recharge?: number;
-  /**
-   * 更新时间
-   */
-  updatedAt?: string;
-  updatedBy?: number;
-  /**
-   * 会员卡id
-   */
-  vip_card?: string;
-  /**
-   * 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
-   */
-  vip_level?: number;
-  /**
-   * 用户卡包余额
-   */
-  wallet_balance?: number;
-}
 export interface Response_response {
   code?: number;
   data?: null;
@@ -2553,79 +2587,11 @@ export interface Response_syscaptcharesponse {
 export interface Response_sysconfigresponse {
   config?: Config_server;
 }
-export interface Transformer_consumptiontransformer {
-  /**
-   * 交易金额
-   */
-  amount?: number;
-  create_at?: string;
-  id?: number;
-  /**
-   * 备注
-   */
-  remark?: string;
-  /**
-   * 交易类型
-   */
-  transaction_type: string;
-  /**
-   * 用户卡包余额
-   */
-  wallet_balance?: number;
-}
-export interface Transformer_devicetransformer {
-  create_at?: string;
-  /**
-   * 设备代码
-   */
-  device_code: string;
-  /**
-   * 设备数据
-   */
-  device_data?: object;
-  /**
-   * 设备名称
-   */
-  device_name: string;
-  id?: number;
-}
-export interface Response_sysapiresponse {
-  api?: System_sysapi;
-}
 export interface Response_pageresult {
   list?: null;
   page?: number;
   pageSize?: number;
   total?: number;
-}
-export interface Transformer_reservationstransformer {
-  /**
-   * 预约日期（yyyy-mm-dd）
-   */
-  date?: string;
-  note?: string;
-  room?: {
-    /**
-     * 所属楼层 ID
-     */
-    floorId?: number;
-    /**
-     * 房间名称
-     */
-    name?: string;
-  };
-  /**
-   * 房间 ID
-   */
-  roomId?: number;
-  /**
-   * 预约状态：RESERVED-预约，CANCELLED-取消预约
-   */
-  status?: string;
-  /**
-   * 时段 ID
-   */
-  timeSlotId?: number;
 }
 export interface Transformer_wechatusertransformer {
   /**
@@ -2694,6 +2660,95 @@ export interface Transformer_wechatusertransformer {
    * 用户卡包余额
    */
   wallet_balance?: number;
+}
+export interface Transformer_casemanagementtransformer {
+  /**
+   * 病例详情
+   */
+  case_description?: string;
+  /**
+   * 病例
+   */
+  case_name?: string;
+  created_at?: string;
+  /**
+   * 首次治疗效果
+   */
+  first_treatment_effect?: string;
+  id?: number;
+  /**
+   * 用户id
+   */
+  user_id?: number;
+  userinfo?: Transformer_wechatusertransformer;
+}
+export interface Transformer_consumptiontransformer {
+  /**
+   * 交易金额
+   */
+  amount?: number;
+  create_at?: string;
+  id?: number;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 交易类型
+   */
+  transaction_type: string;
+  /**
+   * 用户卡包余额
+   */
+  wallet_balance?: number;
+}
+export interface Transformer_devicetransformer {
+  create_at?: string;
+  /**
+   * 设备代码
+   */
+  device_code: string;
+  /**
+   * 设备数据
+   */
+  device_data?: object;
+  /**
+   * 设备名称
+   */
+  device_name: string;
+  id?: number;
+}
+export interface Response_sysapiresponse {
+  api?: System_sysapi;
+}
+export interface Transformer_reservationstransformer {
+  /**
+   * 预约日期（yyyy-mm-dd）
+   */
+  date?: string;
+  note?: string;
+  room?: {
+    /**
+     * 所属楼层 ID
+     */
+    floorId?: number;
+    /**
+     * 房间名称
+     */
+    name?: string;
+  };
+  /**
+   * 房间 ID
+   */
+  roomId?: number;
+  /**
+   * 预约状态：RESERVED-预约，CANCELLED-取消预约
+   */
+  status?: string;
+  /**
+   * 时段 ID
+   */
+  timeSlotId?: number;
 }
 export interface Response_sysauthorityresponse {
   authority?: System_sysauthority;
@@ -2820,7 +2875,853 @@ export interface Response_sysuserresponse {
 }
 declare global {
   interface Apis {
+    CaseManagement: {
+      /**
+       * ---
+       *
+       * [POST] 创建病例管里
+       *
+       * **path:** /Casemanagement/createCaseManagement
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 主键ID
+       *   ID?: number
+       *   // 病例详情
+       *   case_description?: string
+       *   // 病例
+       *   case_name?: string
+       *   // 创建时间
+       *   createdAt?: string
+       *   createdBy?: number
+       *   deletedBy?: number
+       *   // 首次治疗效果
+       *   first_treatment_effect?: string
+       *   // 更新时间
+       *   updatedAt?: string
+       *   updatedBy?: number
+       *   // 用户id
+       *   user_id?: number
+       *   userinfo?: {
+       *     // 主键ID
+       *     ID?: number
+       *     // 头像URL
+       *     avatar_url?: string
+       *     bath_count?: number
+       *     // 创建时间
+       *     createdAt?: string
+       *     createdBy?: number
+       *     // 默认设备ID
+       *     default_device_id?: number
+       *     deletedBy?: number
+       *     // 加解密密钥
+       *     encryption_key?: string
+       *     // 性别：0-未知，1-男，2-女
+       *     gender: number
+       *     // 身份证反面照URL
+       *     id_car_back?: string
+       *     // 身份证号
+       *     id_card: string
+       *     // 身份证正面照URL
+       *     id_card_front: string
+       *     // 手机号
+       *     mobile: string
+       *     // 用户昵称
+       *     nick_name: string
+       *     // 微信openid
+       *     open_id?: string
+       *     // 用户积分
+       *     points?: number
+       *     // 真实姓名
+       *     real_name: string
+       *     // 微信会话密钥
+       *     session_key?: string
+       *     // 状态：0-正常，1-禁用
+       *     status: string
+       *     // 累计消费
+       *     total_consumption?: number
+       *     // 累计充值
+       *     total_recharge?: number
+       *     // 更新时间
+       *     updatedAt?: string
+       *     updatedBy?: number
+       *     // 会员卡id
+       *     vip_card?: string
+       *     // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *     vip_level?: number
+       *     // 用户卡包余额
+       *     wallet_balance?: number
+       *   }
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      post_casemanagement_createcasemanagement<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            msg?: string;
+          }
+        > & {
+          data: Miniprogram_casemanagement;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          msg?: string;
+        },
+        'CaseManagement.post_casemanagement_createcasemanagement',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [DELETE] 删除病例管里
+       *
+       * **path:** /Casemanagement/deleteCaseManagement
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 主键ID
+       *   ID?: number
+       *   // 病例详情
+       *   case_description?: string
+       *   // 病例
+       *   case_name?: string
+       *   // 创建时间
+       *   createdAt?: string
+       *   createdBy?: number
+       *   deletedBy?: number
+       *   // 首次治疗效果
+       *   first_treatment_effect?: string
+       *   // 更新时间
+       *   updatedAt?: string
+       *   updatedBy?: number
+       *   // 用户id
+       *   user_id?: number
+       *   userinfo?: {
+       *     // 主键ID
+       *     ID?: number
+       *     // 头像URL
+       *     avatar_url?: string
+       *     bath_count?: number
+       *     // 创建时间
+       *     createdAt?: string
+       *     createdBy?: number
+       *     // 默认设备ID
+       *     default_device_id?: number
+       *     deletedBy?: number
+       *     // 加解密密钥
+       *     encryption_key?: string
+       *     // 性别：0-未知，1-男，2-女
+       *     gender: number
+       *     // 身份证反面照URL
+       *     id_car_back?: string
+       *     // 身份证号
+       *     id_card: string
+       *     // 身份证正面照URL
+       *     id_card_front: string
+       *     // 手机号
+       *     mobile: string
+       *     // 用户昵称
+       *     nick_name: string
+       *     // 微信openid
+       *     open_id?: string
+       *     // 用户积分
+       *     points?: number
+       *     // 真实姓名
+       *     real_name: string
+       *     // 微信会话密钥
+       *     session_key?: string
+       *     // 状态：0-正常，1-禁用
+       *     status: string
+       *     // 累计消费
+       *     total_consumption?: number
+       *     // 累计充值
+       *     total_recharge?: number
+       *     // 更新时间
+       *     updatedAt?: string
+       *     updatedBy?: number
+       *     // 会员卡id
+       *     vip_card?: string
+       *     // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *     vip_level?: number
+       *     // 用户卡包余额
+       *     wallet_balance?: number
+       *   }
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      delete_casemanagement_deletecasemanagement<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            msg?: string;
+          }
+        > & {
+          data: Miniprogram_casemanagement;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          msg?: string;
+        },
+        'CaseManagement.delete_casemanagement_deletecasemanagement',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [DELETE] 批量删除病例管里
+       *
+       * **path:** /Casemanagement/deleteCaseManagementByIds
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      delete_casemanagement_deletecasemanagementbyids<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            msg?: string;
+          }
+        >
+      >(
+        config?: Config
+      ): Alova2Method<
+        Response_response & {
+          msg?: string;
+        },
+        'CaseManagement.delete_casemanagement_deletecasemanagementbyids',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 用id查询病例管里
+       *
+       * **path:** /Casemanagement/findCaseManagement
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   // 用id查询病例管里
+       *   ID: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     // 主键ID
+       *     ID?: number
+       *     // 病例详情
+       *     case_description?: string
+       *     // 病例
+       *     case_name?: string
+       *     // 创建时间
+       *     createdAt?: string
+       *     createdBy?: number
+       *     deletedBy?: number
+       *     // 首次治疗效果
+       *     first_treatment_effect?: string
+       *     // 更新时间
+       *     updatedAt?: string
+       *     updatedBy?: number
+       *     // 用户id
+       *     user_id?: number
+       *     userinfo?: {
+       *       // 主键ID
+       *       ID?: number
+       *       // 头像URL
+       *       avatar_url?: string
+       *       bath_count?: number
+       *       // 创建时间
+       *       createdAt?: string
+       *       createdBy?: number
+       *       // 默认设备ID
+       *       default_device_id?: number
+       *       deletedBy?: number
+       *       // 加解密密钥
+       *       encryption_key?: string
+       *       // 性别：0-未知，1-男，2-女
+       *       gender: number
+       *       // 身份证反面照URL
+       *       id_car_back?: string
+       *       // 身份证号
+       *       id_card: string
+       *       // 身份证正面照URL
+       *       id_card_front: string
+       *       // 手机号
+       *       mobile: string
+       *       // 用户昵称
+       *       nick_name: string
+       *       // 微信openid
+       *       open_id?: string
+       *       // 用户积分
+       *       points?: number
+       *       // 真实姓名
+       *       real_name: string
+       *       // 微信会话密钥
+       *       session_key?: string
+       *       // 状态：0-正常，1-禁用
+       *       status: string
+       *       // 累计消费
+       *       total_consumption?: number
+       *       // 累计充值
+       *       total_recharge?: number
+       *       // 更新时间
+       *       updatedAt?: string
+       *       updatedBy?: number
+       *       // 会员卡id
+       *       vip_card?: string
+       *       // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *       vip_level?: number
+       *       // 用户卡包余额
+       *       wallet_balance?: number
+       *     }
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_casemanagement_findcasemanagement<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Miniprogram_casemanagement;
+            msg?: string;
+          }
+        > & {
+          params: {
+            /**
+             * 用id查询病例管里
+             */
+            ID: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Miniprogram_casemanagement;
+          msg?: string;
+        },
+        'CaseManagement.get_casemanagement_findcasemanagement',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 分页获取病例管里列表
+       *
+       * **path:** /Casemanagement/getCaseManagementList
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   case_name?: string
+       *   // [items] start
+       *   // [items] end
+       *   createdAtRange?: string[]
+       *   // 关键字
+       *   keyword?: string
+       *   order?: string
+       *   // 页码
+       *   page?: number
+       *   // 每页大小
+       *   pageSize?: number
+       *   sort?: string
+       *   user_id?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     list?: null
+       *     page?: number
+       *     pageSize?: number
+       *     total?: number
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_casemanagement_getcasemanagementlist<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Response_pageresult;
+            msg?: string;
+          }
+        > & {
+          params: {
+            case_name?: string;
+            createdAtRange?: string[];
+            /**
+             * 关键字
+             */
+            keyword?: string;
+            order?: string;
+            /**
+             * 页码
+             */
+            page?: number;
+            /**
+             * 每页大小
+             */
+            pageSize?: number;
+            sort?: string;
+            user_id?: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Response_pageresult;
+          msg?: string;
+        },
+        'CaseManagement.get_casemanagement_getcasemanagementlist',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 不需要鉴权的病例管里接口
+       *
+       * **path:** /Casemanagement/getCaseManagementPublic
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: object
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_casemanagement_getcasemanagementpublic<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: object;
+            msg?: string;
+          }
+        >
+      >(
+        config?: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: object;
+          msg?: string;
+        },
+        'CaseManagement.get_casemanagement_getcasemanagementpublic',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [PUT] 更新病例管里
+       *
+       * **path:** /Casemanagement/updateCaseManagement
+       *
+       * ---
+       *
+       * **RequestBody**
+       * ```ts
+       * type RequestBody = {
+       *   // 主键ID
+       *   ID?: number
+       *   // 病例详情
+       *   case_description?: string
+       *   // 病例
+       *   case_name?: string
+       *   // 创建时间
+       *   createdAt?: string
+       *   createdBy?: number
+       *   deletedBy?: number
+       *   // 首次治疗效果
+       *   first_treatment_effect?: string
+       *   // 更新时间
+       *   updatedAt?: string
+       *   updatedBy?: number
+       *   // 用户id
+       *   user_id?: number
+       *   userinfo?: {
+       *     // 主键ID
+       *     ID?: number
+       *     // 头像URL
+       *     avatar_url?: string
+       *     bath_count?: number
+       *     // 创建时间
+       *     createdAt?: string
+       *     createdBy?: number
+       *     // 默认设备ID
+       *     default_device_id?: number
+       *     deletedBy?: number
+       *     // 加解密密钥
+       *     encryption_key?: string
+       *     // 性别：0-未知，1-男，2-女
+       *     gender: number
+       *     // 身份证反面照URL
+       *     id_car_back?: string
+       *     // 身份证号
+       *     id_card: string
+       *     // 身份证正面照URL
+       *     id_card_front: string
+       *     // 手机号
+       *     mobile: string
+       *     // 用户昵称
+       *     nick_name: string
+       *     // 微信openid
+       *     open_id?: string
+       *     // 用户积分
+       *     points?: number
+       *     // 真实姓名
+       *     real_name: string
+       *     // 微信会话密钥
+       *     session_key?: string
+       *     // 状态：0-正常，1-禁用
+       *     status: string
+       *     // 累计消费
+       *     total_consumption?: number
+       *     // 累计充值
+       *     total_recharge?: number
+       *     // 更新时间
+       *     updatedAt?: string
+       *     updatedBy?: number
+       *     // 会员卡id
+       *     vip_card?: string
+       *     // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *     vip_level?: number
+       *     // 用户卡包余额
+       *     wallet_balance?: number
+       *   }
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   msg?: string
+       * }
+       * ```
+       */
+      put_casemanagement_updatecasemanagement<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            msg?: string;
+          }
+        > & {
+          data: Miniprogram_casemanagement;
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          msg?: string;
+        },
+        'CaseManagement.put_casemanagement_updatecasemanagement',
+        Config
+      >;
+    };
     general: {
+      /**
+       * ---
+       *
+       * [GET] 分页获取病例管里列表
+       *
+       * **path:** /api/case_management
+       *
+       * ---
+       *
+       * **Query Parameters**
+       * ```ts
+       * type QueryParameters = {
+       *   case_name?: string
+       *   // [items] start
+       *   // [items] end
+       *   createdAtRange?: string[]
+       *   // 关键字
+       *   keyword?: string
+       *   order?: string
+       *   // 页码
+       *   page?: number
+       *   // 每页大小
+       *   pageSize?: number
+       *   sort?: string
+       *   user_id?: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     // 病例详情
+       *     case_description?: string
+       *     // 病例
+       *     case_name?: string
+       *     created_at?: string
+       *     // 首次治疗效果
+       *     first_treatment_effect?: string
+       *     id?: number
+       *     // 用户id
+       *     user_id?: number
+       *     userinfo?: {
+       *       // 头像URL
+       *       avatar_url?: string
+       *       bath_count?: number
+       *       // 默认设备ID
+       *       default_device_id?: number
+       *       // 性别：0-未知，1-男，2-女
+       *       gender: number
+       *       id?: number
+       *       // 身份证反面照URL
+       *       id_car_back?: string
+       *       // 身份证号
+       *       id_card: string
+       *       // 身份证正面照URL
+       *       id_card_front: string
+       *       // 手机号
+       *       mobile: string
+       *       // 用户昵称
+       *       nick_name: string
+       *       // 用户积分
+       *       points?: number
+       *       // 真实姓名
+       *       real_name: string
+       *       // 状态：0-正常，1-禁用
+       *       status: string
+       *       // 累计消费
+       *       total_consumption?: number
+       *       // 累计充值
+       *       total_recharge?: number
+       *       // 会员卡id
+       *       vip_card?: string
+       *       // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *       vip_level?: number
+       *       // 用户卡包余额
+       *       wallet_balance?: number
+       *     }
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_api_case_management<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Transformer_casemanagementtransformer;
+            msg?: string;
+          }
+        > & {
+          params: {
+            case_name?: string;
+            createdAtRange?: string[];
+            /**
+             * 关键字
+             */
+            keyword?: string;
+            order?: string;
+            /**
+             * 页码
+             */
+            page?: number;
+            /**
+             * 每页大小
+             */
+            pageSize?: number;
+            sort?: string;
+            user_id?: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Transformer_casemanagementtransformer;
+          msg?: string;
+        },
+        'general.get_api_case_management',
+        Config
+      >;
+      /**
+       * ---
+       *
+       * [GET] 用id查询病例管里
+       *
+       * **path:** /api/case_management/{id}
+       *
+       * ---
+       *
+       * **Path Parameters**
+       * ```ts
+       * type PathParameters = {
+       *   // ID
+       *   id: number
+       * }
+       * ```
+       *
+       * ---
+       *
+       * **Response**
+       * ```ts
+       * type Response = {
+       *   code?: number
+       *   data?: null
+       *   msg?: string
+       * } & {
+       *   data?: {
+       *     // 病例详情
+       *     case_description?: string
+       *     // 病例
+       *     case_name?: string
+       *     created_at?: string
+       *     // 首次治疗效果
+       *     first_treatment_effect?: string
+       *     id?: number
+       *     // 用户id
+       *     user_id?: number
+       *     userinfo?: {
+       *       // 头像URL
+       *       avatar_url?: string
+       *       bath_count?: number
+       *       // 默认设备ID
+       *       default_device_id?: number
+       *       // 性别：0-未知，1-男，2-女
+       *       gender: number
+       *       id?: number
+       *       // 身份证反面照URL
+       *       id_car_back?: string
+       *       // 身份证号
+       *       id_card: string
+       *       // 身份证正面照URL
+       *       id_card_front: string
+       *       // 手机号
+       *       mobile: string
+       *       // 用户昵称
+       *       nick_name: string
+       *       // 用户积分
+       *       points?: number
+       *       // 真实姓名
+       *       real_name: string
+       *       // 状态：0-正常，1-禁用
+       *       status: string
+       *       // 累计消费
+       *       total_consumption?: number
+       *       // 累计充值
+       *       total_recharge?: number
+       *       // 会员卡id
+       *       vip_card?: string
+       *       // 会员卡等级0无会员 1体验会员 2 vip会员 3 银卡会员 4金卡会员 5钻石会员
+       *       vip_level?: number
+       *       // 用户卡包余额
+       *       wallet_balance?: number
+       *     }
+       *   }
+       *   msg?: string
+       * }
+       * ```
+       */
+      get_api_case_management_id<
+        Config extends Alova2MethodConfig<
+          Response_response & {
+            data?: Transformer_casemanagementtransformer;
+            msg?: string;
+          }
+        > & {
+          pathParams: {
+            /**
+             * ID
+             */
+            id: number;
+          };
+        }
+      >(
+        config: Config
+      ): Alova2Method<
+        Response_response & {
+          data?: Transformer_casemanagementtransformer;
+          msg?: string;
+        },
+        'general.get_api_case_management_id',
+        Config
+      >;
       /**
        * ---
        *
